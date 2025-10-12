@@ -1,0 +1,9 @@
+global using Microsoft.EntityFrameworkCore;
+global using myRideApp.Rides.Domain.Abstractions;
+global using myRideApp.Rides.Infrastructure;
+global using MediatR;
+global using Microsoft.AspNetCore.Http.HttpResults;
+global using myRideApp.Rides.Application.Queries;
+global using myRideApp.Rides.Application.DTOs;
+global using myRideApp.Rides.Application.Commands;
+global using myRideApp.Rides.Api;

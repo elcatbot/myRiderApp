@@ -1,6 +1,41 @@
 @Rider.API_HostAddress = http://localhost:5053
 
-GET {{Rider.API_HostAddress}}/weatherforecast/
+GET {{Rider.API_HostAddress}}/api/rides/1
 Accept: application/json
 
+
 ###
+POST {{Rider.API_HostAddress}}/api/rides/
+Content-Type: application/json
+
+{
+  "RiderId": "70229f44-a3e6-4888-a0e5-58fae8eecb96"
+}
+
+
+###
+PUT {{Rider.API_HostAddress}}/api/rides/assign
+Content-Type: application/json
+
+{
+  "RideId": "7d4eb0dd-44e8-49b2-9ffd-0c024cc67c18",
+  "DriverId": "b6a7dde4-5daf-496c-b7a9-c53921f23c27"
+}
+
+
+###
+PUT {{Rider.API_HostAddress}}/api/rides/init
+Content-Type: application/json
+
+{
+  "RideId": "7d4eb0dd-44e8-49b2-9ffd-0c024cc67c18"
+}
+
+
+###
+PUT {{Rider.API_HostAddress}}/api/rides/complete
+Content-Type: application/json
+
+{
+  "RideId": "7d4eb0dd-44e8-49b2-9ffd-0c024cc67c18"
+}
