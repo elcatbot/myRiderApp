@@ -4,7 +4,7 @@ public class Ride
 {
     public Guid Id { get; private set; }
     public Guid RiderId { get; private set; }
-    public Guid? DriverId { get; private set; }
+    public Guid DriverId { get; private set; }
     public RideStatus Status { get; private set; }
     public Fare Fare { get; private set; }
     public DateTime RequestedAt { get; private set; }

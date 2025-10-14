@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ride.Domain\Ride.Domain.csproj" />
+    <ProjectReference Include="..\Ride.Infrastructure\Ride.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

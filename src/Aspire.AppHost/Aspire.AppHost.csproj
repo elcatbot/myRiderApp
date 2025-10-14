@@ -13,16 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.2" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <ProjectReference Include="..\Analytics.Api\Analytics.Api.csproj" />
-    <ProjectReference Include="..\Driver.Api\Driver.Api.csproj" />
-    <ProjectReference Include="..\Notification.Api\Notification.Api.csproj" />
-    <ProjectReference Include="..\Payment.Api\Payment.Api.csproj" />
-    <ProjectReference Include="..\Pricing.Api\Pricing.Api.csproj" />
-    <ProjectReference Include="..\Rider.Api\Rider.Api.csproj" />
-    <ProjectReference Include="..\Trip.Api\Trip.Api.csproj" /> -->
+    <ProjectReference Include="..\Ride\Ride.Api\Ride.Api.csproj" />
   </ItemGroup>
 
 </Project>

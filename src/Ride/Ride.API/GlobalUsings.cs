@@ -7,3 +7,4 @@ global using myRideApp.Rides.Application.Queries;
 global using myRideApp.Rides.Application.DTOs;
 global using myRideApp.Rides.Application.Commands;
 global using myRideApp.Rides.Api;
+global using myRideApp.Rides.Infrastructure.Messaging.Extensions;

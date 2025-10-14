@@ -1,6 +1,8 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddRabbitMqEventBus("eventbus");
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<RideContext>(o => o.UseInMemoryDatabase("Rides"));
