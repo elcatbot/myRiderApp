@@ -1,5 +1,4 @@
-
-namespace myRideApp.Rides.Api;
+namespace myRideApp.Rides.Api.Extensions;
 
 public class ExceptionHandlingMiddleware(RequestDelegate Next, ILogger<ExceptionHandlingMiddleware> Logger)
 {

@@ -1,15 +1,9 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddRabbitMqEventBus("eventbus");
+builder.AddApplicationServices();
+builder.Host.AddHostServices();
 
-builder.Services.AddOpenApi();
-
-builder.Services.AddDbContext<RideContext>(o => o.UseInMemoryDatabase("Rides"));
-
-builder.Services.AddTransient<IRideRepository, RideRepository>();
-
-builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(RequestRideCommandHandler)));
+// builder.AddServiceDefaults();
 
 var app = builder.Build();
 

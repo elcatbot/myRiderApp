@@ -31,63 +31,39 @@ public static class RiderApi
         [FromBody] RequestRideCommand command
     )
     {
-        try
-        {
-            var commandResult = await services.Mediator.Send(command);
-            return TypedResults.Created($"{commandResult}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"ERROR => {ex}");
-            return TypedResults.Problem(detail: "Rider profile failed to create", statusCode: 500);
-        }
+        var commandResult = await services.Mediator.Send(command);
+        return TypedResults.Created($"{commandResult}");
     }
 
     private static async Task<Results<NoContent, ProblemHttpResult>> AssignDriverAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] AssignDriverCommand command
     )
-    {
-        return await HandleUpdateCommands(services, command);
-    }
+        => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, ProblemHttpResult>> InitRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] InitRideCommand command
     )
-    {
-        return await HandleUpdateCommands(services, command);
-    }
+        => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, ProblemHttpResult>> CompleteRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] CompleteRideCommand command
     )
-    {
-        return await HandleUpdateCommands(services, command);
-    }
+        => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, ProblemHttpResult>> CancelRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] CancelRideCommand command
     )
-    {
-        return await HandleUpdateCommands(services, command);
-    }
+        => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, ProblemHttpResult>> HandleUpdateCommands(
         RiderParamServices services,
         IRequest command)
     {
-        try
-        {
-            await services.Mediator.Send(command);
-            return TypedResults.NoContent();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"ERROR => {ex}");
-            throw;
-        }
+        await services.Mediator.Send(command);
+        return TypedResults.NoContent();
     }
 }
