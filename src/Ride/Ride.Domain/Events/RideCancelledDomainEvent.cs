@@ -1,11 +1,11 @@
 namespace myRideApp.Rides.Domain.Events;
 
-public class RideCompletedDomainEvent : INotification
+public class RideCancelledDomainEvent : INotification
 {
     public Guid RideId { get; }
     public DateTime CompletedAt { get; }
 
-    public RideCompletedDomainEvent(Guid rideId, DateTime completedAt)
+    public RideCancelledDomainEvent(Guid rideId, DateTime completedAt)
     {
         RideId = rideId;
         CompletedAt = completedAt;

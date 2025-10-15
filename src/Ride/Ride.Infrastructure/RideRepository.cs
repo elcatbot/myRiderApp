@@ -1,6 +1,6 @@
 namespace myRideApp.Rides.Infrastructure;
 
-public class RideRepository(RideContext Context) : IRideRepository
+public class RideRepository(RideContext Context, IMediator Mediator) : IRideRepository
 {
     public async Task<Ride> GetByIdAsync(Guid id)
         => (await Context.Rides.FindAsync(id))!;
@@ -12,6 +12,9 @@ public class RideRepository(RideContext Context) : IRideRepository
         => Context.Rides.Update(ride);
 
     public async Task SaveChangesAsync()
-        => await Context.SaveChangesAsync();
+    {
+        await Context.SaveChangesAsync();
+        await Mediator.DispatchDomainEventsAsync(Context);
+    }
 
 }

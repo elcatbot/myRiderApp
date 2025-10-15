@@ -13,6 +13,8 @@ builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(
 
 var app = builder.Build();
 
+app.UseCustomException();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -20,6 +22,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapRiderApiV1();
-
 app.Run();
 

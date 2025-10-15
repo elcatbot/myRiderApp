@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace myRideApp.Rides.Api;
 
 public static class RiderApi
@@ -13,7 +11,7 @@ public static class RiderApi
         api.MapPut("/assign", AssignDriverAsync);
         api.MapPut("/init", InitRideAsync);
         api.MapPut("/complete", CompleteRideAsync);
-        // api.MapGet("/{id:int}/trips", GetRiderTripHistoryAsync); // Proxy from Trip Service
+        api.MapPut("/cancel", CancelRideAsync);
         return api;
     }
 
@@ -69,6 +67,14 @@ public static class RiderApi
         return await HandleUpdateCommands(services, command);
     }
 
+    private static async Task<Results<NoContent, ProblemHttpResult>> CancelRideAsync(
+        [AsParameters] RiderParamServices services,
+        [FromBody] CancelRideCommand command
+    )
+    {
+        return await HandleUpdateCommands(services, command);
+    }
+
     private static async Task<Results<NoContent, ProblemHttpResult>> HandleUpdateCommands(
         RiderParamServices services,
         IRequest command)
@@ -81,7 +87,7 @@ public static class RiderApi
         catch (Exception ex)
         {
             Console.WriteLine($"ERROR => {ex}");
-            return TypedResults.Problem(detail: "Rider profile failed to update", statusCode: 500);
+            throw;
         }
     }
 }
