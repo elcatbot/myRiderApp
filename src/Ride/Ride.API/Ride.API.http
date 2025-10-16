@@ -18,7 +18,7 @@ PUT {{Rider.API_HostAddress}}/api/rides/assign
 Content-Type: application/json
 
 {
-  "RideId": "6944cd5d-15d2-4d07-af42-6ce5f7a0caad",
+  "RideId": "cc4837ab-f649-4b5c-b439-a77da8da1fc6",
   "DriverId": "b6a7dde4-5daf-496c-b7a9-c53921f23c27"
 }
 
@@ -28,7 +28,7 @@ PUT {{Rider.API_HostAddress}}/api/rides/init
 Content-Type: application/json
 
 {
-  "RideId": "6944cd5d-15d2-4d07-af42-6ce5f7a0caad"
+  "RideId": "cc4837ab-f649-4b5c-b439-a77da8da1fc6"
 }
 
 
@@ -37,7 +37,7 @@ PUT {{Rider.API_HostAddress}}/api/rides/complete
 Content-Type: application/json
 
 {
-  "RideId": "6944cd5d-15d2-4d07-af42-6ce5f7a0caad"
+  "RideId": "73659906-5ae4-48e4-aa73-06662e248960"
 }
 
 
@@ -46,5 +46,5 @@ PUT {{Rider.API_HostAddress}}/api/rides/cancel
 Content-Type: application/json
 
 {
-  "RideId": "4603d84a-3f6a-4908-a957-6a6dd4c278a5"
+  "RideId": "cc4837ab-f649-4b5c-b439-a77da8da1fc6"
 }

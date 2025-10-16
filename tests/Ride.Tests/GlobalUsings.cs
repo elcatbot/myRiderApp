@@ -5,3 +5,4 @@ global using myRideApp.Rides.Application.Queries;
 global using myRideApp.Rides.Infrastructure.Messaging;
 global using myRideApp.Rides.Application.IntegrationEvents;
 global using myRideApp.Rides.Application.Commands;
+global using myRideApp.Rides.Domain.Exceptions;

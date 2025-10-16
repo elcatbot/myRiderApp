@@ -1,46 +1,40 @@
+using myRideApp.Rides.Domain.Exceptions;
+
 namespace myRideApp.Rides.Application.Commands;
 
-public class InitRideCommandHandlerTest
+public class CancelRideCommandHandlerTest
 {
     [Fact]
-    public async Task Handle_InitRide_UpdatesRepository_SavesAndPublishesEvent()
+    public async Task Handle_CancelRide_UpdatesRepository_SavesAndPublishesEvent()
     {
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
         var ride = new Ride(riderId);
         ride.AssignDriver(driverId);
+        ride.InitRide();
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync(ride);
 
         var eventBusMock = new Mock<IEventBus>();
         eventBusMock
-            .Setup(e => e.PublishAsync(It.IsAny<RideInitializedIntegrationEvent>()))
+            .Setup(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>()))
             .ReturnsAsync(true);
 
-        var command = new InitRideCommand(ride.Id);
-        var handler = new InitRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var command = new CancelRideCommand(ride.Id);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
 
         // Act
         var sut = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         Assert.True(sut);
-        Assert.Equal(RideStatus.InProgress, ride.Status);
+        Assert.Equal(RideStatus.Cancelled, ride.Status);
 
         // Repository update and save should be invoked
         repositoryMock.Verify(r => r.UpdateAsync(ride), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
-
-        // An integration event with correct payload should be published
-        eventBusMock.Verify(eb => eb.PublishAsync(
-            It.Is<RideInitializedIntegrationEvent>(ev =>
-                ev.RideId == ride.Id &&
-                ev.DriverId == driverId &&
-                ev.RiderId == riderId &&
-                ev.RequestedAt == ride.RequestedAt
-            )), Times.Once);
     }
 
     [Fact]
@@ -56,8 +50,8 @@ public class InitRideCommandHandlerTest
 
         var eventBusMock = new Mock<IEventBus>();
 
-        var command = new InitRideCommand(ride.Id);
-        var handler = new InitRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var command = new CancelRideCommand(ride.Id);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
 
         // Act 
         var sut = await handler.Handle(command, CancellationToken.None);
@@ -66,7 +60,7 @@ public class InitRideCommandHandlerTest
         Assert.False(sut);
         repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>()), Times.Never);
     }
 
     [Fact]
@@ -82,10 +76,12 @@ public class InitRideCommandHandlerTest
 
         var eventBusMock = new Mock<IEventBus>();
 
-        var command = new InitRideCommand(ride.Id);
-        var handler = new InitRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var command = new CancelRideCommand(ride.Id);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
 
         // Act & Assert
+        var sut = handler.Handle(command, CancellationToken.None);
+        
         await Assert.ThrowsAsync<RideDomainException>(() => handler.Handle(command, CancellationToken.None));
     }
 }
