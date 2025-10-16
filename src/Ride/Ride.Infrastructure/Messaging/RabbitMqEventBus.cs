@@ -6,10 +6,11 @@ public class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEv
 {
     private const string ExchangeName = "ride_event_bus";
 
-    public async Task PublishAsync<TEvent>(TEvent @event)
+    public async Task<bool> PublishAsync<TEvent>(TEvent @event)
     {
         var routingKey = $"{@event!.GetType().Name}";
         var queueName = $"{@event!.GetType().Name}_queue";
+        
         Logger.LogInformation($"Creating Channel for event {queueName}");
 
         var channel = RabbitMqConnection.CreateModel();
@@ -18,12 +19,13 @@ public class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEv
         channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         channel.QueueBind(queue: queueName, exchange: ExchangeName, routingKey: routingKey, null);
 
-
         var serializedEvent = JsonSerializer.Serialize(@event);
 
         var body = Encoding.UTF8.GetBytes(serializedEvent);
 
         channel.BasicPublish(exchange: ExchangeName, routingKey: routingKey, body: body);
+
+        return true;
     }
 
     public async Task SubscribeAsync<TEvent>(string routingKey, Action<TEvent> handler)

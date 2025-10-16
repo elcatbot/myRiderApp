@@ -1,28 +1,24 @@
 namespace myRideApp.Rides.Application.Commands;
 
-public class CancelRideCommandHandler(IRideRepository Repository, IEventBus EventBus) 
-    : IRequestHandler<CancelRideCommand>
+public class CancelRideCommandHandler(IRideRepository Repository, IEventBus EventBus)
+    : IRequestHandler<CancelRideCommand, bool>
 {
-    public async Task Handle(CancelRideCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(CancelRideCommand request, CancellationToken cancellationToken)
     {
-        try
+        var ride = await Repository.GetByIdAsync(request.RideId);
+        if (ride == null)
         {
-            var ride = await Repository.GetByIdAsync(request.RideId);
-            ride.CancelRide();
-            await Repository.UpdateAsync(ride);
-            await Repository.SaveChangesAsync();
+            return false;
+        }
+        ride.CancelRide();
+        await Repository.UpdateAsync(ride);
+        await Repository.SaveChangesAsync();
 
-            await EventBus.PublishAsync(new RideCancelledIntegrationEvent
-            {
-                RideId = ride.Id,
-                RiderId = ride.RiderId,
-                RequestedAt = ride.RequestedAt
-            });
-        }
-        catch (Exception ex)
+        return await EventBus.PublishAsync(new RideCancelledIntegrationEvent
         {
-            Console.WriteLine($"ERROR => {ex}");
-            throw;
-        }
+            RideId = ride.Id,
+            RiderId = ride.RiderId,
+            RequestedAt = ride.RequestedAt
+        });
     }
 }

@@ -61,7 +61,7 @@ public static class RiderApi
 
     private static async Task<Results<NoContent, ProblemHttpResult>> HandleUpdateCommands(
         RiderParamServices services,
-        IRequest command)
+        IRequest<bool> command)
     {
         await services.Mediator.Send(command);
         return TypedResults.NoContent();

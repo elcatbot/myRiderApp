@@ -1,4 +1,3 @@
-
 namespace myRideApp.Rides.Application.Queries;
 
 public class GetRideByIdQueryHandler(IRideRepository Repository) : IRequestHandler<GetRideByIdQuery, RideDto>
@@ -11,7 +10,7 @@ public class GetRideByIdQueryHandler(IRideRepository Repository) : IRequestHandl
             Id = ride.Id,
             RiderId = ride.RiderId,
             DriverId = ride.DriverId,
-            Status = ride.Status.ToString(),
+            Status = ride.Status,
             Fare = ride.Fare,
             RequestedAt = ride.RequestedAt
         };

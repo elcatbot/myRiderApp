@@ -1,3 +1,3 @@
 namespace myRideApp.Rides.Application.Commands;
 
-public record CompleteRideCommand(Guid RideId) : IRequest;
+public record CompleteRideCommand(Guid RideId) : IRequest<bool>;

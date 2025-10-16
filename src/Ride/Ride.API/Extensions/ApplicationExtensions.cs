@@ -13,6 +13,5 @@ public static class ApplicationExtensions
         builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(RequestRideCommandHandler)));
 
         builder.Services.AddOpenApi();
-        
     }
 }
