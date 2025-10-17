@@ -4,7 +4,7 @@ public static class ApplicationExtensions
 {
     public static void AddApplicationServices(this IHostApplicationBuilder builder)
     {
-        builder.AddRabbitMqEventBus("eventbus");
+        builder.AddRabbitMqEventBus(builder.Configuration["EventBusConenction"]!);
         
         builder.Services.AddDbContext<RideContext>(o => o.UseInMemoryDatabase("Rides"));
 

@@ -4,11 +4,12 @@ public static class RabbitMqDIExtensions
 {
     public static IHostApplicationBuilder AddRabbitMqEventBus(
         this IHostApplicationBuilder builder,
-        string connectionName
+        string connectionstring
     )
     {
-        connectionName = "amqp://guest:guest@localhost:5672";
-        builder.AddRabbitMQClient(connectionName);
+        var isAspire = Environment.GetEnvironmentVariable("RUNNING_IN_ASPIRE") == "true";
+        connectionstring = isAspire ? "eventbus" : connectionstring;
+        builder.AddRabbitMQClient(connectionstring);
         builder.Services.AddSingleton<IEventBus, RabbitMqEventBus>();
         return builder;
     }

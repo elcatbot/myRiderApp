@@ -15,3 +15,6 @@ global using myRideApp.Rides.Infrastructure;
 global using System.Net;
 global using System.Net.Http.Json;
 global using FluentAssertions;
+global using Testcontainers.RabbitMq;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using RabbitMQ.Client;

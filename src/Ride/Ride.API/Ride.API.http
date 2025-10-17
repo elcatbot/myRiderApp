@@ -18,7 +18,7 @@ PUT {{Rider.API_HostAddress}}/api/rides/assign
 Content-Type: application/json
 
 {
-  "RideId": "cc4837ab-f649-4b5c-b439-a77da8da1fc6",
+  "RideId": "817bb130-2bbb-4624-8642-97f0ad07b1bc",
   "DriverId": "b6a7dde4-5daf-496c-b7a9-c53921f23c27"
 }
 
