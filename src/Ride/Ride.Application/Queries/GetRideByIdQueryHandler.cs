@@ -5,6 +5,10 @@ public class GetRideByIdQueryHandler(IRideRepository Repository) : IRequestHandl
     public async Task<RideDto> Handle(GetRideByIdQuery request, CancellationToken cancellationToken)
     {
         var ride = await Repository.GetByIdAsync(request.RideId);
+        if (ride == null)
+        {
+            return null!;
+        }
         return new RideDto
         {
             Id = ride.Id,

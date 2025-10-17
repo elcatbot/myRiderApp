@@ -1,6 +1,6 @@
 @Rider.API_HostAddress = http://localhost:5053
 
-GET {{Rider.API_HostAddress}}/api/rides/1
+GET {{Rider.API_HostAddress}}/api/rides/5c0f218c-dee2-48dd-b353-fe1d0e079af2
 Accept: application/json
 
 

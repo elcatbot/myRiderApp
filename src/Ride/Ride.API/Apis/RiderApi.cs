@@ -6,7 +6,7 @@ public static class RiderApi
     {
         var api = app.MapGroup("api/rides");
 
-        api.MapGet("/{id:guid}", GetRideAsync);
+        api.MapGet("/{id:guid}", GetRideAsync).WithName("GetRide");
         api.MapPost("/", RequestRideAsync);
         api.MapPut("/assign", AssignDriverAsync);
         api.MapPut("/init", InitRideAsync);
@@ -17,9 +17,10 @@ public static class RiderApi
 
     private static async Task<Results<Ok<RideDto>, NotFound>> GetRideAsync(
         [AsParameters] RiderParamServices services,
-        [AsParameters] GetRideByIdQuery query
+        Guid id
     )
     {
+        var query = new GetRideByIdQuery(id);
         var queryResult = await services.Mediator.Send(query);
         return queryResult != null
             ? TypedResults.Ok(queryResult)
@@ -27,43 +28,47 @@ public static class RiderApi
     }
 
     private static async Task<Results<Created, ProblemHttpResult>> RequestRideAsync(
+        HttpContext context,
         [AsParameters] RiderParamServices services,
         [FromBody] RequestRideCommand command
     )
     {
         var commandResult = await services.Mediator.Send(command);
-        return TypedResults.Created($"{commandResult}");
+        context.Response.Headers["X-ride-id"] = $"{commandResult}";
+        return TypedResults.Created();
     }
 
-    private static async Task<Results<NoContent, ProblemHttpResult>> AssignDriverAsync(
+    private static async Task<Results<NoContent, NotFound>> AssignDriverAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] AssignDriverCommand command
     )
         => await HandleUpdateCommands(services, command);
 
-    private static async Task<Results<NoContent, ProblemHttpResult>> InitRideAsync(
+    private static async Task<Results<NoContent, NotFound>> InitRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] InitRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
-    private static async Task<Results<NoContent, ProblemHttpResult>> CompleteRideAsync(
+    private static async Task<Results<NoContent, NotFound>> CompleteRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] CompleteRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
-    private static async Task<Results<NoContent, ProblemHttpResult>> CancelRideAsync(
+    private static async Task<Results<NoContent, NotFound>> CancelRideAsync(
         [AsParameters] RiderParamServices services,
         [FromBody] CancelRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
-    private static async Task<Results<NoContent, ProblemHttpResult>> HandleUpdateCommands(
+    private static async Task<Results<NoContent, NotFound>> HandleUpdateCommands(
         RiderParamServices services,
         IRequest<bool> command)
     {
-        await services.Mediator.Send(command);
-        return TypedResults.NoContent();
+        var commandResult = await services.Mediator.Send(command);
+        return commandResult
+            ? TypedResults.NoContent()
+            : TypedResults.NotFound();
     }
 }

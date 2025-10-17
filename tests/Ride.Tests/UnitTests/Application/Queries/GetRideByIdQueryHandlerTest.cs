@@ -38,9 +38,11 @@ public class GetRideByIdQueryHandlerTest
         var query = new GetRideByIdQuery(rideId);
         var handler = new GetRideByIdQueryHandler(_repository.Object);
 
-        // // Act & Assert
-        await Assert.ThrowsAsync<NullReferenceException>(async () => await handler.Handle(query, CancellationToken.None));
-        _repository.Verify(r => r.GetByIdAsync(It.IsAny<Guid>()), Times.Once);
+        // // Act
+        var sut = await handler.Handle(query, CancellationToken.None);
+
+        // Assert
+        Assert.Null(sut);
     }
 
     private Ride FakeRide()
