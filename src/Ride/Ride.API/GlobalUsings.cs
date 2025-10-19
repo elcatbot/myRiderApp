@@ -13,3 +13,8 @@ global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json;
 global using myRideApp.Rides.Domain.Exceptions;
 global using Serilog;
+global using Elastic.Channels;
+global using Elastic.Ingest.Elasticsearch;
+global using Elastic.Ingest.Elasticsearch.DataStreams;
+global using Elastic.Serilog.Sinks;
+global using Elastic.Transport;
