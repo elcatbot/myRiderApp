@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.AddApplicationServices();
+builder.Host.AddHostServices();
 
 var app = builder.Build();
 

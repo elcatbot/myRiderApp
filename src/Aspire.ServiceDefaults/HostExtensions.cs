@@ -1,4 +1,4 @@
-namespace myRideApp.Rides.Api.Extensions;
+namespace myRideApp.Extensions.Hosting;
 
 public static class HostExtensions
 {
