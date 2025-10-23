@@ -1,0 +1,14 @@
+@Gateway.API_HostAddress = http://localhost:5002
+
+GET {{Gateway.API_HostAddress}}/api/rides/23c8662d-488d-425e-8f7d-30a611dcac50
+Accept: application/json
+Authorization: Bearer 
+
+
+###
+POST {{Gateway.API_HostAddress}}/api/rides
+Content-Type: application/json
+Authorization: Bearer 
+{
+  "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8"
+}

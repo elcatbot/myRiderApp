@@ -11,7 +11,7 @@ public static class HostExtensions
                 .WriteTo.Console();
 
             var isElasticsearch = context.Configuration["elasticsearchConnection:host"];
-            if (isElasticsearch != null)
+            if (!string.IsNullOrEmpty(isElasticsearch))
             {
                 configureLogger.WriteTo.Elasticsearch(new[] { new Uri(context.Configuration["elasticsearchConnection:host"]!) }, opts =>
                 {

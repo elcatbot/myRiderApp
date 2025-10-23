@@ -1,0 +1,1 @@
+ for i in {1..30}; do curl -i http://localhost:5002/api/rides/; echo; done
