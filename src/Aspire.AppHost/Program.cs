@@ -14,5 +14,7 @@ var rideService = builder.AddProject<Projects.Ride_Api>("ride-api")
     // .WithReference(rabbitmq);
     ;
 
+var apiGateway = builder.AddProject<Projects.Gateway_Api>("gateway-api");
+
 
 builder.Build().Run();

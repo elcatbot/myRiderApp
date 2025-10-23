@@ -79,6 +79,9 @@ public static class ApplicationExtensions
             options.RejectionStatusCode = 429; // Too Many Requests
         });
 
+        builder.Services.AddIPFilterPolicies(builder.Configuration);
+
+
         // Global rate limit for all routes
         // options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
         // {

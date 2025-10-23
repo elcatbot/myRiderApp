@@ -10,7 +10,6 @@ POST {{Gateway.API_HostAddress}}/api/rides
 Content-Type: application/json
 Authorization: Bearer 
 
-
 {
   "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8"
 }

@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddApplicationServices();
 builder.Host.AddHostServices();
 
-// builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 
 var app = builder.Build();
 

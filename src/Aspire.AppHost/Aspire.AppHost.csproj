@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ride\Ride.Api\Ride.Api.csproj" />
+    <ProjectReference Include="..\Security\Gateway.Api\Gateway.Api.csproj" />
   </ItemGroup>
 
 </Project>
