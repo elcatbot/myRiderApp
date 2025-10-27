@@ -4,4 +4,8 @@ global using Elastic.Serilog.Sinks;
 global using Elastic.Channels;
 global using Elastic.Ingest.Elasticsearch;
 global using Elastic.Ingest.Elasticsearch.DataStreams;
+global using Microsoft.AspNetCore.Builder;
 global using Elastic.Transport;
+global using System.Net.Http.Headers;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.DependencyInjection;

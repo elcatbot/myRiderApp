@@ -1,0 +1,57 @@
+@Identity.API_HostAddress = http://localhost:5001
+
+POST {{Identity.API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "Email": "rider1@rides.com",
+  "Password": "MyP455w0rd!",
+  "Role": "rider"
+}
+
+
+###
+POST {{Identity.API_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "Email": "rider1@rides.com",
+  "Password": "MyP455w0rd!",
+  "Role": "rider"
+}
+
+###
+POST {{Identity.API_HostAddress}}/api/auth/disable-user
+Content-Type: application/json
+
+{
+  "email": "rider1@rides.com"
+}
+
+###
+GET {{Identity.API_HostAddress}}/api/auth/email/confirm?userid=d6c9b957-40a1-404a-b0f3-2641a356f9f8&token=CfDJ8OqccK6gTQZIsL%2BdChV4c4AKfZylvjYZaXZpijdsDdsp1iJH3WeguRWR%2B19p2vgvf5x4AfVX02ySn7liPtu5LSLEfPAh%2FIDMpDYnGOpTgapKPSVyj3F3O7X%2FnEMZUb3pCLr9cCx%2FvVW3ltO0v%2B9QTx08qqIiZfNm%2F4lYBxvvf9bHZyLsYkpwLKt%2BhjM18WDEPTyRhtsK2LNuUsmyPQ2hbyPXcCzRL253I7ZHdNGb8rnPmF5ipCWahnNUIamjNgqzmg%3D%3D
+Content-Type: application/json
+
+{
+  "email": "rider1@rides.com"
+}
+
+###
+POST {{Identity.API_HostAddress}}/api/auth/password-forgot
+Content-Type: application/json
+
+{
+  "email": "rider1@rides.com"
+}
+
+
+
+###
+POST {{Identity.API_HostAddress}}/api/auth/password-reset
+Content-Type: application/json
+
+{
+  "email": "rider1@rides.com",
+  "ResetCode": "CfDJ8OqccK6gTQZIsL%2BdChV4c4CJcrRY5lko43Ymurcaw3NoXs26k%2Fgaq5b8TaEN5dohmMk0PcecP2%2BXeOleJaLH2s4P4UZtcYHugYnhuy03f9zZ4ThNMcVRy0xtw27Q%2BQNSWb4yWqwaNBCRvBqx6YHBkCIhLGIKC6lp9BnYSuXvsWKNkHIsMwNyalHPsngppnVOpWWTvt3fHEd3CyI4fBCboU6XbOZSk%2FNYAr7qI%2B5Amg18",
+  "NewPassword": "cdcdPAz@8hd"
+}
