@@ -52,6 +52,6 @@ Content-Type: application/json
 
 {
   "email": "rider1@rides.com",
-  "ResetCode": "CfDJ8OqccK6gTQZIsL%2BdChV4c4CJcrRY5lko43Ymurcaw3NoXs26k%2Fgaq5b8TaEN5dohmMk0PcecP2%2BXeOleJaLH2s4P4UZtcYHugYnhuy03f9zZ4ThNMcVRy0xtw27Q%2BQNSWb4yWqwaNBCRvBqx6YHBkCIhLGIKC6lp9BnYSuXvsWKNkHIsMwNyalHPsngppnVOpWWTvt3fHEd3CyI4fBCboU6XbOZSk%2FNYAr7qI%2B5Amg18",
+  "ResetCode": "",
   "NewPassword": "cdcdPAz@8hd"
 }

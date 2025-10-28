@@ -1,6 +1,6 @@
 namespace myRideApp.Rides.Api;
 
-public static class RiderApi
+public static class RideApi
 {
     public static RouteGroupBuilder MapRiderApiV1(this IEndpointRouteBuilder app)
     {
@@ -16,7 +16,7 @@ public static class RiderApi
     }
 
     private static async Task<Results<Ok<RideDto>, NotFound>> GetRideAsync(
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         Guid id
     )
     {
@@ -29,7 +29,7 @@ public static class RiderApi
 
     private static async Task<Results<Created, ProblemHttpResult>> RequestRideAsync(
         HttpContext context,
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         [FromBody] RequestRideCommand command
     )
     {
@@ -39,31 +39,31 @@ public static class RiderApi
     }
 
     private static async Task<Results<NoContent, NotFound>> AssignDriverAsync(
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         [FromBody] AssignDriverCommand command
     )
         => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, NotFound>> InitRideAsync(
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         [FromBody] InitRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, NotFound>> CompleteRideAsync(
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         [FromBody] CompleteRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, NotFound>> CancelRideAsync(
-        [AsParameters] RiderParamServices services,
+        [AsParameters] RideParamServices services,
         [FromBody] CancelRideCommand command
     )
         => await HandleUpdateCommands(services, command);
 
     private static async Task<Results<NoContent, NotFound>> HandleUpdateCommands(
-        RiderParamServices services,
+        RideParamServices services,
         IRequest<bool> command)
     {
         var commandResult = await services.Mediator.Send(command);

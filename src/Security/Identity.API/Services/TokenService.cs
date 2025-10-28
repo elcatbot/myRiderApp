@@ -10,13 +10,12 @@ public class TokenService(IConfiguration Config) : ITokenService
             new Claim(JwtRegisteredClaimNames.Email, user.Email!),
             new Claim("role", roles.FirstOrDefault() ?? "user")
         };
-
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config["JwtToken:Key"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: Config["Jwt:Issuer"],
-            audience: Config["Jwt:Audience"],
+            issuer: Config["JwtToken:Issuer"],
+            audience: Config["JwtToken:Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddMinutes(15),
             signingCredentials: creds

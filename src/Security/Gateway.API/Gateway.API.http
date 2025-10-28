@@ -2,13 +2,14 @@
 
 GET {{Gateway.API_HostAddress}}/api/rides/e277ab75-e040-4cce-835e-87a3dd8bf1f6
 Accept: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNDhkN2Y4Ny03NTVmLTRlZGMtOTFiYi1lZjllNjA0N2NmYjQiLCJlbWFpbCI6InJpZGVyMUByaWRlcy5jb20iLCJyb2xlIjoicmlkZXJzIiwiZXhwIjoxNzYxNjE0NDc4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEiLCJhdWQiOiJyaWRlLWFwaSJ9.GpbKK7j2mXo1CCN48cGgP7A4NJWl-YA7HmOY2sERht0
 
 
 ###
 POST {{Gateway.API_HostAddress}}/api/rides
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNDhkN2Y4Ny03NTVmLTRlZGMtOTFiYi1lZjllNjA0N2NmYjQiLCJlbWFpbCI6InJpZGVyMUByaWRlcy5jb20iLCJyb2xlIjoicmlkZXJzIiwiZXhwIjoxNzYxNjE0NDc4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEiLCJhdWQiOiJyaWRlLWFwaSJ9.GpbKK7j2mXo1CCN48cGgP7A4NJWl-YA7HmOY2sERht0
+
 
 {
   "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8"
