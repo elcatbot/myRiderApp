@@ -75,7 +75,9 @@ public class Driver : IAggregateRoot
     public void AddAvailability(AvailabilityWindow window)
     {
         if (_availability.Any(w => w.Day == window.Day && w.Start < window.End && window.Start < w.End))
-            throw new InvalidOperationException("Overlapping availability window");
+        {
+            throw new DriverDomainException("Overlapping availability window");
+        }
 
         _availability.Add(window);
     }

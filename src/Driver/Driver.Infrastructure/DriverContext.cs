@@ -4,7 +4,7 @@ public class DriverContext : DbContext
 {
     public DriverContext(DbContextOptions<DriverContext> options) : base(options) { }
 
-    public DbSet<Driver> Rides { get; set; }
+    public DbSet<Driver> Drivers { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
