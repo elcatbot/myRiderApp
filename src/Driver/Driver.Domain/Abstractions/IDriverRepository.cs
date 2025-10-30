@@ -1,4 +1,4 @@
-namespace myRideApp.Drviers.Domain.Abstractions;
+namespace myRideApp.Drivers.Domain.Abstractions;
 
 public interface IDriverRepository
 {

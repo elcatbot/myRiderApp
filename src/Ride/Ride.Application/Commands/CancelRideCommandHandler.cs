@@ -19,6 +19,6 @@ public class CancelRideCommandHandler(IRideRepository Repository, IEventBus Even
             RideId = ride.Id,
             RiderId = ride.RiderId,
             RequestedAt = ride.RequestedAt
-        });
+        }, nameof(Ride));
     }
 }

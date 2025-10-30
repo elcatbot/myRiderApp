@@ -20,6 +20,6 @@ public class InitRideCommandHandler(IRideRepository Repository, IEventBus EventB
             RiderId = ride.RiderId,
             DriverId = ride.DriverId,
             RequestedAt = ride.RequestedAt
-        });
+        }, nameof(Ride));
     }
 }

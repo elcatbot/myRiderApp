@@ -1,11 +1,11 @@
-namespace myRideApp.Rides.Infrastructure;
+namespace myRideApp.Drivers.Infrastructure;
 
 static class MediatorExtension
 {
-    public static async Task DispatchDomainEventsAsync(this IMediator mediator, RideContext ctx)
+    public static async Task DispatchDomainEventsAsync(this IMediator mediator, DriverContext ctx)
     {
         var domainEntities = ctx.ChangeTracker
-            .Entries<Ride>()
+            .Entries<Driver>()
             .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any());
 
         var domainEvents = domainEntities
@@ -17,6 +17,8 @@ static class MediatorExtension
 
         foreach (var domainEvent in domainEvents)
         {
+                Console.WriteLine(domainEvent);
+
             await mediator.Publish(domainEvent);
         }
     }

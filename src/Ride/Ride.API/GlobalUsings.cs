@@ -8,7 +8,6 @@ global using myRideApp.Rides.Application.DTOs;
 global using myRideApp.Rides.Application.Commands;
 global using myRideApp.Rides.Api;
 global using myRideApp.Rides.Api.Extensions;
-global using myRideApp.Rides.Infrastructure.Messaging.Extensions;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json;
 global using myRideApp.Rides.Domain.Exceptions;

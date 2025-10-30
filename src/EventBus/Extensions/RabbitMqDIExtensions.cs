@@ -1,4 +1,4 @@
-namespace myRideApp.Rides.Infrastructure.Messaging.Extensions;
+namespace myRideApp.EventBus.Extensions;
 
 public static class RabbitMqDIExtensions
 {

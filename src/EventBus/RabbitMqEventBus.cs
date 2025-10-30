@@ -1,29 +1,27 @@
-
-namespace myRideApp.Rides.Infrastructure.Messaging;
+namespace myRideApp.EventBus;
 
 public class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEventBus> Logger) 
     : IEventBus, IDisposable
 {
-    private const string ExchangeName = "ride_event_bus";
-
-    public async Task<bool> PublishAsync<TEvent>(TEvent @event)
+    public async Task<bool> PublishAsync<TEvent>(TEvent @event, string domain)
     {
         var routingKey = $"{@event!.GetType().Name}";
         var queueName = $"{@event!.GetType().Name}_queue";
+        var exchangeName = $"{domain}_event_bus";
         
         Logger.LogInformation($"Creating Channel for event {queueName}");
 
         var channel = RabbitMqConnection.CreateModel();
 
-        channel.ExchangeDeclare(ExchangeName, type: ExchangeType.Direct);
+        channel.ExchangeDeclare(exchangeName, type: ExchangeType.Direct);
         channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
-        channel.QueueBind(queue: queueName, exchange: ExchangeName, routingKey: routingKey, null);
+        channel.QueueBind(queue: queueName, exchange: exchangeName, routingKey: routingKey, null);
 
         var serializedEvent = JsonSerializer.Serialize(@event);
 
         var body = Encoding.UTF8.GetBytes(serializedEvent);
 
-        channel.BasicPublish(exchange: ExchangeName, routingKey: routingKey, body: body);
+        channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, body: body);
 
         return true;
     }

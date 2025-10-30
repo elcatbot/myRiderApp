@@ -14,6 +14,7 @@ public class Driver : IAggregateRoot
     public DriverRating? Rating { get; private set; }
     private readonly List<AvailabilityWindow> _availability = new();
     public IReadOnlyList<AvailabilityWindow> Availability => _availability.AsReadOnly();
+    public DrivingHistory History { get; private set; } = new();
 
     private List<INotification>? _domainEvents;
     public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly()!;
@@ -54,13 +55,14 @@ public class Driver : IAggregateRoot
         _domainEvents!.Add(new DriverAcceptedRideDomainEvent(Id, rideId));
     }
 
-    public void CompleteRide(Guid rideId)
+    public void CompleteRide(Guid rideId, double distanceKm)
     {
         if (Status != DriverStatus.Busy)
         {
             throw new DriverDomainException("Driver must be Busy");
         }
         Status = DriverStatus.Online;
+        History = History.AddRide(rideId, DateTime.UtcNow, distanceKm);
         _domainEvents!.Add(new DriverCompletedRideDomainEvent(Id, rideId));
     }
 

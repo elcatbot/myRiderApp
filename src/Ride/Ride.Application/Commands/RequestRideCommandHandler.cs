@@ -16,7 +16,7 @@ public class RequestRideCommandHandler(IRideRepository Repository, IEventBus Eve
                 RideId = ride.Id,
                 RiderId = ride.RiderId,
                 RequestedAt = ride.RequestedAt
-            });
+            }, nameof(Ride));
             return ride.Id;
         }
         catch (Exception ex)

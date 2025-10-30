@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Ride.Domain\Ride.Domain.csproj" />
     <ProjectReference Include="..\Ride.Infrastructure\Ride.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Aspire.ServiceDefaults\Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>
