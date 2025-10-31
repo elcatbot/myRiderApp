@@ -7,7 +7,7 @@ public class Email(string Value) : ValueObject
     public static Email Create(string value)
     {
         if (!Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            throw new ArgumentException("Invalid email format");
+            throw new DriverDomainException("Invalid email format");
         return new Email(value);
     }
 

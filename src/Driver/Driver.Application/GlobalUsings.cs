@@ -4,3 +4,4 @@ global using myRideApp.Drivers.Domain.Abstractions;
 global using myRideApp.Drivers.Domain.Models;
 global using myRideApp.Drivers.Infrastructure;
 global using Microsoft.EntityFrameworkCore;
+global using System.Diagnostics.CodeAnalysis;

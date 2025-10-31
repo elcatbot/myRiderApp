@@ -8,7 +8,7 @@ public class PhoneNumber(string Value) : ValueObject
     public static PhoneNumber Create(string value)
     {
         if (!Regex.IsMatch(value, @"^\+\d{10,15}$"))
-            throw new ArgumentException("Invalid phone number");
+            throw new DriverDomainException("Invalid phone number");
         return new PhoneNumber(value);
     }
 

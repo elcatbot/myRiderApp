@@ -1,0 +1,16 @@
+global using MediatR;
+global using myRideApp.Drivers.Application.DTOs;
+global using Microsoft.AspNetCore.Http.HttpResults;
+global using Microsoft.AspNetCore.Mvc;
+global using myRideApp.Drivers.Application.Commands;
+global using myRideApp.Drivers.Application.Queries;
+global using myRideApp.Drivers.Api;
+global using Microsoft.EntityFrameworkCore;
+global using myRideApp.Drivers.Application.Commands.Handlers;
+global using myRideApp.Drivers.Domain.Abstractions;
+global using myRideApp.Drivers.Infrastructure;
+global using myRideApp.EventBus.Extensions;
+global using System.Text.Json;
+global using myRideApp.Drivers.Domain.Exceptions;
+global using myRideApp.Extensions.Hosting;
+global using myRideApp.Drivers.Api.Extensions;

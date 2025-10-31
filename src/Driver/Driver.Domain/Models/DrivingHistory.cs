@@ -2,14 +2,17 @@ namespace myRideApp.Drivers.Domain.Models;
 
 public class DrivingHistory : ValueObject
 {
-    private readonly List<RideRecord> _rides = new();
+    private readonly List<RideRecord> _rides;
     public IReadOnlyList<RideRecord> Rides => _rides.AsReadOnly();
 
     public int TotalRides => _rides.Count;
     public double TotalDistance => _rides.Sum(r => r.DistanceKm);
     public DateTime? LastRide => _rides.OrderByDescending(r => r.CompletedAt).FirstOrDefault()?.CompletedAt;
 
-    public DrivingHistory() { }
+    public DrivingHistory()
+    {
+        _rides = new();
+    }
 
     public DrivingHistory(IEnumerable<RideRecord> rides)
     {

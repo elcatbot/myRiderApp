@@ -16,20 +16,31 @@ public class ListAvailableDriversQueryHandler : IRequestHandler<ListAvailableDri
             .Include(d => d.Rating)
             .Include(d => d.History)
             .Include(d => d.Availability)
-            .Where(d => d.Status == DriverStatus.Online &&
-                        d.Availability.Any(a => a.IsAvailableAt(request.Time)) &&
-                        GetDistanceKm(d.CurrentLocation!, new Location(request.Latitude, request.Longitude)) <= request.RadiusKm)
-            .ToListAsync(cancellationToken);
+            .Where(d => d.Status == DriverStatus.Online)
+            .ToListAsync();
+
+        var filtered = drivers
+            .Where(d =>
+               d.Availability.Any(a => a.IsAvailableAt(request.Time)) &&
+                    GetDistanceKm(d.CurrentLocation!, new Location(request.Latitude, request.Longitude)) <= request.RadiusKm)
+            .Skip((request.Page - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
+
+        if(drivers == null || filtered.Count == 0)
+        {
+            return null!;
+        }
 
         return drivers.Select(driver => new DriverDto
         {
             Id = driver.Id,
             Name = driver.Name,
-            Email = driver.Email.ToString(),
-            PhoneNumber = driver.PhoneNumber.ToString(),
-            Vehicle = driver.Vehicle.ToString(),
+            Email = driver.Email!.ToString(),
+            PhoneNumber = driver.PhoneNumber!.ToString(),
+            Vehicle = driver.Vehicle!.ToString(),
             Rating = driver.Rating!.Average,
-            TotalRides = driver.History.TotalRides,
+            TotalRides = driver.History!.TotalRides,
             TotalDistance = driver.History.TotalDistance,
             Status = driver.Status.ToString()
         }).ToList();

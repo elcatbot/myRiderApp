@@ -1,8 +1,7 @@
 namespace myRideApp.Drivers.Application.Commands;
 
-public record GoOnlineCommand : IRequest<bool>
-{
-    public Guid DriverId { get; set; }
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
-}
+public record GoOnlineCommand(
+    Guid DriverId,
+    double Latitude,
+    double Longitude
+) : IRequest<bool>;

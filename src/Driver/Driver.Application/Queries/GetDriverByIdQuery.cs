@@ -1,6 +1,3 @@
 namespace myRideApp.Drivers.Application.Queries;
 
-public class GetDriverByIdQuery : IRequest<DriverDto>
-{
-    public Guid DriverId { get; set; }
-}
+public record GetDriverByIdQuery(Guid DriverId) : IRequest<DriverDto>;

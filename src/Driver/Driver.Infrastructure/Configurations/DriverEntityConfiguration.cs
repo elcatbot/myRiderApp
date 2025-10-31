@@ -66,35 +66,52 @@ public class DriverEntityConfiguration : IEntityTypeConfiguration<Driver>
 
         builder.OwnsMany(d => d.Availability, availability =>
         {
-            // availability.WithOwner().HasForeignKey("DriverId");
-            // availability.Property<int>("Id"); // Shadow key
-            // availability.HasKey("Id");
+            availability.WithOwner().HasForeignKey("DriverId");
+            availability.Property<int>("Id"); // Shadow key
+            availability.HasKey("Id");
 
-            // availability.Property(a => a.Day).HasColumnName("Day").IsRequired();
-            // availability.Property(a => a.Start).HasColumnName("Start").IsRequired();
-            // availability.Property(a => a.End).HasColumnName("End").IsRequired();
+            availability.Property(a => a.Day)
+                // .HasColumnName("Day")
+                .IsRequired();
+            availability.Property(a => a.Start)
+                // .HasColumnName("Start")
+                .IsRequired();
+            availability.Property(a => a.End)
+                // .HasColumnName("End")
+                .IsRequired();
+
+            //  modelBuilder.Entity<AvailabilityWindow>()
+            // .HasConstructorBinding(typeof(AvailabilityWindow).GetConstructor(new[] {
+            //     typeof(DayOfWeek), typeof(TimeSpan), typeof(TimeSpan)
+            // }));
 
             // availability.ToTable("DriverAvailability");
         });
 
         builder.OwnsOne(d => d.History, history =>
         {
-            // history.Ignore(h => h.TotalRides);
-            // history.Ignore(h => h.TotalDistance);
-            // history.Ignore(h => h.LastRide);
+            history.Ignore(h => h.TotalRides);
+            history.Ignore(h => h.TotalDistance);
+            history.Ignore(h => h.LastRide);
 
-            // history.OwnsMany(h => h.Rides, ride =>
-            // {
-            //     ride.WithOwner().HasForeignKey("DriverId");
-            //     ride.Property<Guid>("Id"); // Shadow key
-            //     ride.HasKey("Id");
+            history.OwnsMany(h => h.Rides, ride =>
+            {
+                ride.WithOwner().HasForeignKey("DriverId");
+                ride.Property<Guid>("Id"); // Shadow key
+                ride.HasKey("Id");
 
-            //     ride.Property(r => r.RideId).HasColumnName("RideId").IsRequired();
-            //     ride.Property(r => r.CompletedAt).HasColumnName("CompletedAt").IsRequired();
-            //     ride.Property(r => r.DistanceKm).HasColumnName("DistanceKm").IsRequired();
+                ride.Property(r => r.RideId)
+                    // .HasColumnName("RideId")
+                    .IsRequired();
+                ride.Property(r => r.CompletedAt)
+                    // .HasColumnName("CompletedAt")
+                    .IsRequired();
+                ride.Property(r => r.DistanceKm)
+                    // .HasColumnName("DistanceKm")
+                    .IsRequired();
 
-            //     // ride.ToTable("DriverRideHistory");
-            // });
+                // ride.ToTable("DriverRideHistory");
+            });
         });
 
         // builder.ToTable("Drivers");

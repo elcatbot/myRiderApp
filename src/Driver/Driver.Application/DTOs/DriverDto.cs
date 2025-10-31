@@ -1,6 +1,6 @@
 namespace myRideApp.Drivers.Application.DTOs;
 
-public class DriverDto
+public record DriverDto
 {
     public Guid Id { get; set; }
     public string? Name { get; set; }

@@ -1,6 +1,86 @@
 @Driver.API_HostAddress = http://localhost:5201
 
-GET {{Driver.API_HostAddress}}/weatherforecast/
+GET {{Driver.API_HostAddress}}/api/driver?query=latitude=19.401840&longitude=-99.142091
 Accept: application/json
+
+###
+
+
+GET {{Driver.API_HostAddress}}/api/driver/37c7bd12-4481-4f72-bdfa-781e505ae73e
+Accept: application/json
+
+
+###
+
+POST {{Driver.API_HostAddress}}/api/driver
+Content-Type: application/json
+
+{
+  "Name": "Driver 1",
+  "Email": "Email1@email.com",
+  "PhoneNumber": "+77776545555",
+  "Make": "Make 1",
+  "Model": "Model 1",
+  "PlateNumber": "PlateNumber 1"
+}
+
+###
+
+
+PUT {{Driver.API_HostAddress}}/api/driver/go-online
+Content-Type: application/json
+
+{
+  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
+  "Latitude": "19.401840",
+  "Longitude": "-99.142091"
+}
+
+###
+
+
+PUT {{Driver.API_HostAddress}}/api/driver/ride/accept
+Content-Type: application/json
+
+{
+  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
+  "RideId": "37c7bd12-4481-4f72-bdfa-781e505ae73e"
+}
+
+###
+
+
+PUT {{Driver.API_HostAddress}}/api/driver/ride/complete
+Content-Type: application/json
+
+{
+  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
+  "RideId": "37c7bd12-4481-4f72-bdfa-781e505ae73e",
+  "DistanceKm": 15
+}
+
+###
+
+
+PUT {{Driver.API_HostAddress}}/api/driver/rate
+Content-Type: application/json
+
+{
+  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
+  "Score": 4
+}
+
+###
+
+
+PUT {{Driver.API_HostAddress}}/api/driver/availability-window
+Content-Type: application/json
+
+{
+  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
+  "Day": 5,
+  "Start": "08:00:00",
+  "End": "15:00:00"
+}
 
 ###

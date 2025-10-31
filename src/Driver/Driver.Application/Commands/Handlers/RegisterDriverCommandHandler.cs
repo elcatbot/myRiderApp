@@ -1,14 +1,8 @@
 namespace myRideApp.Drivers.Application.Commands.Handlers;
 
-public class RegisterDriverCommandHandler : IRequestHandler<RegisterDriverCommand, Guid>
+public class RegisterDriverCommandHandler(IDriverRepository Repository)
+    : IRequestHandler<RegisterDriverCommand, Guid>
 {
-    private readonly IDriverRepository _repository;
-
-    public RegisterDriverCommandHandler(IDriverRepository repository, DriverContext context)
-    {
-        _repository = repository;
-    }
-
     public async Task<Guid> Handle(RegisterDriverCommand request, CancellationToken cancellationToken)
     {
         var driver = new Driver(
@@ -17,9 +11,8 @@ public class RegisterDriverCommandHandler : IRequestHandler<RegisterDriverComman
             PhoneNumber.Create(request.PhoneNumber!),
             new Vehicle(request.Make!, request.Model!, request.PlateNumber!)
         );
-
-        await _repository.AddAsync(driver);
-        await _repository.SaveChangesAsync();
+        await Repository.AddAsync(driver);
+        await Repository.SaveChangesAsync();
         return driver.Id;
     }
 }
