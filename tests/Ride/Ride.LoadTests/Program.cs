@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using myRideApp.Rides.Application.Commands;
+using myRideApp.Rides.Domain.Models;
 using NBomber.Contracts.Stats;
 using NBomber.CSharp;
 using NBomber.Http;
@@ -11,7 +12,9 @@ var httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5053")
 var rideRequestScenario = Scenario.Create("ride_request", async context =>
 {
     var riderId = Guid.NewGuid();
-    var request = new RequestRideCommand(riderId);
+    var pickup = new Location(19.401840, -99.142091);
+    var dropoff = new Location(6.16511, -75.574600);
+    var request = new RequestRideCommand(riderId, pickup, dropoff, 15000);
     var response = await httpClient.PostAsJsonAsync("/api/rides", request);
 
     return response.IsSuccessStatusCode

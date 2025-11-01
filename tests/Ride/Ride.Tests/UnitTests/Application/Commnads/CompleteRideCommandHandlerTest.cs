@@ -1,3 +1,5 @@
+using myRideApp.Utilities.EventBus;
+
 namespace myRideApp.Rides.Application.Commands;
 
 public class CompleteRideCommandHandlerTest
@@ -8,7 +10,7 @@ public class CompleteRideCommandHandlerTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
         ride.InitRide();
 
@@ -17,7 +19,7 @@ public class CompleteRideCommandHandlerTest
 
         var eventBusMock = new Mock<IEventBus>();
         eventBusMock
-            .Setup(e => e.PublishAsync(It.IsAny<RideCompletedIntegrationEvent>()))
+            .Setup(e => e.PublishAsync(It.IsAny<RideCompletedIntegrationEvent>(), "Ride"))
             .ReturnsAsync(true);
 
         var command = new CompleteRideCommand(ride.Id);
@@ -41,7 +43,7 @@ public class CompleteRideCommandHandlerTest
                 ev.DriverId == driverId &&
                 ev.RiderId == riderId &&
                 ev.RequestedAt == ride.RequestedAt
-            )), Times.Once);
+            ), "Ride"), Times.Once);
     }
 
     [Fact]
@@ -50,7 +52,7 @@ public class CompleteRideCommandHandlerTest
         // Arrange
         // Arrange
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync((Ride)null!);
@@ -67,6 +69,6 @@ public class CompleteRideCommandHandlerTest
         Assert.False(sut);
         repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }
 }

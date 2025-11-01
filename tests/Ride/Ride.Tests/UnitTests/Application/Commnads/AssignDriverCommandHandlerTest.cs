@@ -1,3 +1,5 @@
+using myRideApp.Utilities.EventBus;
+
 namespace myRideApp.Rides.Application.Commands;
 
 public class AssignDriverCommandHandlerTest
@@ -8,7 +10,7 @@ public class AssignDriverCommandHandlerTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync(ride);
@@ -36,7 +38,7 @@ public class AssignDriverCommandHandlerTest
                 ev.DriverId == driverId &&
                 ev.RiderId == riderId &&
                 ev.RequestedAt == ride.RequestedAt
-            )), Times.Once);
+            ), "Ride"), Times.Once);
     }
 
     [Fact]
@@ -46,7 +48,7 @@ public class AssignDriverCommandHandlerTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync(ride);
@@ -61,6 +63,6 @@ public class AssignDriverCommandHandlerTest
         await Assert.ThrowsAsync<Exception>(() => handler.Handle(command, CancellationToken.None));
         repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }
 }

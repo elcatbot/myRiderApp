@@ -9,7 +9,7 @@ public class RideTest
         var riderId = Guid.NewGuid();
 
         // Act
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Assert
         Assert.NotNull(ride);
@@ -23,7 +23,7 @@ public class RideTest
         // Arrage
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Act
         ride.AssignDriver(driverId);
@@ -39,7 +39,7 @@ public class RideTest
         // Arrage
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
         ride.InitRide();
 
@@ -53,7 +53,7 @@ public class RideTest
         // Arrage
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
 
         // Act
@@ -69,7 +69,7 @@ public class RideTest
     {
         // Arrage
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Act & Assert
         Assert.Throws<RideDomainException>(() => ride.InitRide());
@@ -81,7 +81,7 @@ public class RideTest
         // Arrage
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
         ride.InitRide();
 
@@ -98,7 +98,7 @@ public class RideTest
     {
         // Arrage
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Act & Assert
         Assert.Throws<RideDomainException>(() => ride.CompleteRide());
@@ -110,7 +110,7 @@ public class RideTest
         // Arrage
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
         ride.InitRide();
 
@@ -127,7 +127,7 @@ public class RideTest
     {
         // Arrage
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Act & Assert
         Assert.Throws<RideDomainException>(() => ride.CancelRide());

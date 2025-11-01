@@ -1,3 +1,5 @@
+using myRideApp.Utilities.EventBus;
+
 namespace myRideApp.Tests.Rides.Application.Commands;
 
 public class RequestRideCommandHandlerTest
@@ -18,11 +20,11 @@ public class RequestRideCommandHandlerTest
             .Returns(Task.CompletedTask);
 
         eventBusMock
-            .Setup(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()))
+            .Setup(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"))
             .ReturnsAsync(true);
 
         var handler = new RequestRideCommandHandler(repoMock.Object, eventBusMock.Object);
-        var command = new RequestRideCommand(Guid.NewGuid());
+        var command = new RequestRideCommand(Guid.NewGuid(), new Location(1, 1), new Location(2, 2), 4000);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -31,7 +33,7 @@ public class RequestRideCommandHandlerTest
         Assert.NotEqual(Guid.Empty, result);
         repoMock.Verify(r => r.AddAsync(It.IsAny<Ride>()), Times.Once);
         repoMock.Verify(r => r.SaveChangesAsync(), Times.Once);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Once);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Once);
     }
 
     [Fact]
@@ -46,12 +48,12 @@ public class RequestRideCommandHandlerTest
             .ThrowsAsync(new InvalidOperationException("repo failure"));
 
         var handler = new RequestRideCommandHandler(repoMock.Object, eventBusMock.Object);
-        var command = new RequestRideCommand(Guid.NewGuid());
+        var command = new RequestRideCommand(Guid.NewGuid(), new Location(1, 1), new Location(2, 2), 4000);
 
         // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(() => handler.Handle(command, CancellationToken.None));
         repoMock.Verify(r => r.AddAsync(It.IsAny<Ride>()), Times.Once);
         repoMock.Verify(r => r.SaveChangesAsync(), Times.Never);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }
 }

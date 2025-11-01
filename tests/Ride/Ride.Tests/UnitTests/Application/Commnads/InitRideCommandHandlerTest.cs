@@ -1,3 +1,5 @@
+using myRideApp.Utilities.EventBus;
+
 namespace myRideApp.Rides.Application.Commands;
 
 public class InitRideCommandHandlerTest
@@ -8,7 +10,7 @@ public class InitRideCommandHandlerTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
 
         var repositoryMock = new Mock<IRideRepository>();
@@ -16,7 +18,7 @@ public class InitRideCommandHandlerTest
 
         var eventBusMock = new Mock<IEventBus>();
         eventBusMock
-            .Setup(e => e.PublishAsync(It.IsAny<RideInitializedIntegrationEvent>()))
+            .Setup(e => e.PublishAsync(It.IsAny<RideInitializedIntegrationEvent>(), "Ride"))
             .ReturnsAsync(true);
 
         var command = new InitRideCommand(ride.Id);
@@ -40,7 +42,7 @@ public class InitRideCommandHandlerTest
                 ev.DriverId == driverId &&
                 ev.RiderId == riderId &&
                 ev.RequestedAt == ride.RequestedAt
-            )), Times.Once);
+            ), "Ride"), Times.Once);
     }
 
     [Fact]
@@ -49,7 +51,7 @@ public class InitRideCommandHandlerTest
         // Arrange
         // Arrange
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync((Ride)null!);
@@ -66,7 +68,7 @@ public class InitRideCommandHandlerTest
         Assert.False(sut);
         repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }
 
     [Fact]
@@ -75,7 +77,7 @@ public class InitRideCommandHandlerTest
         // Arrange
         // Arrange
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync(ride);

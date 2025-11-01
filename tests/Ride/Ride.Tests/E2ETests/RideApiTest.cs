@@ -17,7 +17,7 @@ public class RiderApiTest
     {
         // Arrange
         var riderId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         // Act
         var response = await _client.PostAsJsonAsync("/api/rides", request);
@@ -31,7 +31,7 @@ public class RiderApiTest
     {
         // Arrange
         var riderId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
         var res = await _client.PostAsJsonAsync("/api/rides", request);
         var rideId = new Guid(res.Headers.GetValues("X-ride-id").FirstOrDefault()!);
 
@@ -61,7 +61,7 @@ public class RiderApiTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
         var res = await _client.PostAsJsonAsync("/api/rides", request);
         var rideId = new Guid(res.Headers.GetValues("X-ride-id").FirstOrDefault()!);
         var assignDriverRequest = new AssignDriverCommand(rideId, driverId);
@@ -94,7 +94,7 @@ public class RiderApiTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
         var res1 = await _client.PostAsJsonAsync("/api/rides", request);
         var rideId = new Guid(res1.Headers.GetValues("X-ride-id").FirstOrDefault()!);
         var assignDriverRequest = new AssignDriverCommand(rideId, driverId);
@@ -128,7 +128,7 @@ public class RiderApiTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
         var res1 = await _client.PostAsJsonAsync("/api/rides", request);
         var rideId = new Guid(res1.Headers.GetValues("X-ride-id").FirstOrDefault()!);
         var assignDriverRequest = new AssignDriverCommand(rideId, driverId);
@@ -164,7 +164,7 @@ public class RiderApiTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var request = new RequestRideCommand(riderId);
+        var request = new RequestRideCommand(riderId, new Location(1, 1), new Location(2, 2), 4000);
         var res1 = await _client.PostAsJsonAsync("/api/rides", request);
         var rideId = new Guid(res1.Headers.GetValues("X-ride-id").FirstOrDefault()!);
         var assignDriverRequest = new AssignDriverCommand(rideId, driverId);

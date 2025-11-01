@@ -1,4 +1,5 @@
-﻿namespace myRideApp.Tests.Rides.Application.Queries;
+﻿
+namespace myRideApp.Tests.Rides.Application.Queries;
 
 public class GetRideByIdQueryHandlerTest
 {
@@ -46,5 +47,5 @@ public class GetRideByIdQueryHandlerTest
     }
 
     private Ride FakeRide()
-        => new Ride(new Guid("971e6c78-f337-4396-87b7-e93f7a5389d8"));
+        => new Ride(new Guid("971e6c78-f337-4396-87b7-e93f7a5389d8"), new Location(1, 1), new Location(2, 2), 4000);
 }

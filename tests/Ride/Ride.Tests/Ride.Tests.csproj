@@ -27,6 +27,7 @@
     <ProjectReference Include="..\..\..\src\Ride\Ride.Application\Ride.Application.csproj" />
     <ProjectReference Include="..\..\..\src\Ride\Ride.Domain\Ride.Domain.csproj" />
     <ProjectReference Include="..\..\..\src\Ride\Ride.Infrastructure\Ride.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Utilities\Utilities.csproj" />
 
   </ItemGroup>
 

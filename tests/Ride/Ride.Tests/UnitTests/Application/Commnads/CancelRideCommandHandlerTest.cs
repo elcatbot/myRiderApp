@@ -1,4 +1,5 @@
 using myRideApp.Rides.Domain.Exceptions;
+using myRideApp.Utilities.EventBus;
 
 namespace myRideApp.Rides.Application.Commands;
 
@@ -10,7 +11,7 @@ public class CancelRideCommandHandlerTest
         // Arrange
         var riderId = Guid.NewGuid();
         var driverId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
         ride.AssignDriver(driverId);
         ride.InitRide();
 
@@ -19,7 +20,7 @@ public class CancelRideCommandHandlerTest
 
         var eventBusMock = new Mock<IEventBus>();
         eventBusMock
-            .Setup(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>()))
+            .Setup(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>(), "Ride"))
             .ReturnsAsync(true);
 
         var command = new CancelRideCommand(ride.Id);
@@ -43,7 +44,7 @@ public class CancelRideCommandHandlerTest
         // Arrange
         // Arrange
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync((Ride)null!);
@@ -60,7 +61,7 @@ public class CancelRideCommandHandlerTest
         Assert.False(sut);
         repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>()), Times.Never);
+        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>(), "Ride"), Times.Never);
     }
 
     [Fact]
@@ -69,7 +70,7 @@ public class CancelRideCommandHandlerTest
         // Arrange
         // Arrange
         var riderId = Guid.NewGuid();
-        var ride = new Ride(riderId);
+        var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
 
         var repositoryMock = new Mock<IRideRepository>();
         repositoryMock.Setup(r => r.GetByIdAsync(ride.Id)).ReturnsAsync(ride);

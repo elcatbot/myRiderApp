@@ -1,3 +1,5 @@
+using myRideApp.Utilities.EventBus;
+
 namespace myRideApp.E2ETests.Rides;
 
 public class CustomWebApplicationFactory<TProgram>
