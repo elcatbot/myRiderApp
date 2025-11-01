@@ -6,21 +6,27 @@ public class Ride
     public Guid RiderId { get; private set; }
     public Guid DriverId { get; private set; }
     public RideStatus Status { get; private set; }
-    public Fare Fare { get; private set; }
+    public Fare? Fare { get; private set; }
+    public Location? PickUp { get; private set; }
+    public Location? DropOff { get; private set; }
     public DateTime RequestedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
     private List<INotification>? _domainEvents;
     public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly()!;
 
+    public Ride() { }
 
-    public Ride(Guid riderId)
+    public Ride(Guid riderId, Location pickUp, Location dropoff, decimal fare)
     {
         Id = Guid.NewGuid();
         RiderId = riderId;
-        RequestedAt = DateTime.UtcNow;
         Status = RideStatus.Requested;
-        Fare = new(0, "COP");
+        Fare = new(fare, "COP");
+        PickUp = pickUp;
+        DropOff = dropoff;
+        RequestedAt = DateTime.UtcNow;
+
         AddDomainEvent(new RideRequestedDomainEvent(Id, riderId, DateTime.UtcNow));
     }
 

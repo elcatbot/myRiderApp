@@ -14,3 +14,5 @@ global using System.Text.Json;
 global using myRideApp.Drivers.Domain.Exceptions;
 global using myRideApp.Extensions.Hosting;
 global using myRideApp.Drivers.Api.Extensions;
+global using myRideApp.Drivers.Application.IntegrationEvents;
+global using myRideApp.Drivers.Api.Services;

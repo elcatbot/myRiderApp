@@ -19,6 +19,7 @@ public class ListAvailableDriversQueryHandler : IRequestHandler<ListAvailableDri
             .Where(d => d.Status == DriverStatus.Online)
             .ToListAsync();
 
+
         var filtered = drivers
             .Where(d =>
                d.Availability.Any(a => a.IsAvailableAt(request.Time)) &&
@@ -27,6 +28,12 @@ public class ListAvailableDriversQueryHandler : IRequestHandler<ListAvailableDri
             .Take(request.PageSize)
             .ToList();
 
+        foreach (var item in filtered)
+        {
+            var distance = GetDistanceKm(item.CurrentLocation!, new Location(request.Latitude, request.Longitude));
+
+            Console.WriteLine($"Distance => {distance} km");
+        }
         if(drivers == null || filtered.Count == 0)
         {
             return null!;

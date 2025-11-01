@@ -12,3 +12,4 @@ global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json;
 global using myRideApp.Rides.Domain.Exceptions;
 global using myRideApp.Extensions.Hosting;
+global using myRideApp.EventBus.Extensions;

@@ -1,3 +1,8 @@
 namespace myRideApp.Rides.Application.Commands;
 
-public record RequestRideCommand(Guid RiderId) : IRequest<Guid>;
+public record RequestRideCommand(
+    Guid RiderId,
+    Location Pickup,
+    Location Dropoff,
+    decimal Fare
+) : IRequest<Guid>;

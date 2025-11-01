@@ -9,7 +9,16 @@ POST {{Rider.API_HostAddress}}/api/rides/
 Content-Type: application/json
 
 {
-  "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8"
+  "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8",
+  "Pickup": {
+    "Latitude": "19.401840",
+    "Longitude": "-99.142091"
+  },
+  "Dropoff": {
+    "Latitude": "6.16511",
+    "Longitude": "-75.574600"
+  },
+  "Fare": 7000
 }
 
 

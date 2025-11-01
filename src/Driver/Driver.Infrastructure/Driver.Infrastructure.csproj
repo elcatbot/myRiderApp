@@ -13,5 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Driver.Domain\Driver.Domain.csproj" />
+    <ProjectReference Include="..\..\EventBus\EventBus.csproj" />
   </ItemGroup>
 </Project>

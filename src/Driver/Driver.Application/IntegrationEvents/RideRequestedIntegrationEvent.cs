@@ -1,6 +1,6 @@
-namespace myRideApp.Rides.Application.IntegrationEvents;
+namespace myRideApp.Drivers.Application.IntegrationEvents;
 
-public record RideRequestedIntegrationEvent
+public record RideRequestedIntegrationEvent : IRequest
 {
     public Guid RideId { get; set; }
     public Guid RiderId { get; set; }

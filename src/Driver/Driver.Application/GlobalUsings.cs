@@ -5,3 +5,6 @@ global using myRideApp.Drivers.Domain.Models;
 global using myRideApp.Drivers.Infrastructure;
 global using Microsoft.EntityFrameworkCore;
 global using System.Diagnostics.CodeAnalysis;
+global using myRideApp.Drivers.Application.Queries;
+global using myRideApp.EventBus;
+global using Microsoft.Extensions.Logging;
