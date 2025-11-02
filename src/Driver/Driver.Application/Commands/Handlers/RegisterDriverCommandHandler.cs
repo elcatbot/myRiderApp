@@ -17,7 +17,7 @@ public class RegisterDriverCommandHandler(
             new Vehicle(request.Make!, request.Model!, request.PlateNumber!)
         );
         
-        await Repository.AddAsync(driver);
+        Repository.Add(driver);
         await Repository.SaveChangesAsync();
 
         await publishEvents.PublishAsync(

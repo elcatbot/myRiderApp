@@ -11,7 +11,7 @@ public class AcceptRideCommandHandler(IDriverRepository Repository)
             return false;
         }
         driver.AcceptRide(request.RideId);
-        await Repository.UpdateAsync(driver);
+        Repository.Update(driver);
         await Repository.SaveChangesAsync();
         return true;
     }

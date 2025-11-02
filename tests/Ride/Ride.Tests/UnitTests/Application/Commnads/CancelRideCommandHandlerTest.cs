@@ -34,7 +34,7 @@ public class CancelRideCommandHandlerTest
         Assert.Equal(RideStatus.Cancelled, ride.Status);
 
         // Repository update and save should be invoked
-        repositoryMock.Verify(r => r.UpdateAsync(ride), Times.Once);
+        repositoryMock.Verify(r => r.Update(ride), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
     }
 
@@ -59,7 +59,7 @@ public class CancelRideCommandHandlerTest
 
         // Assert
         Assert.False(sut);
-        repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
+        repositoryMock.Verify(r => r.Update(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideCancelledIntegrationEvent>(), "Ride"), Times.Never);
     }

@@ -6,12 +6,13 @@ public class AssignDriverCommandHandler(IRideRepository Repository, IEventBus Ev
     public async Task<bool> Handle(AssignDriverCommand request, CancellationToken cancellationToken)
     {
         var ride = await Repository.GetByIdAsync(request.RideId);
-        if(ride == null)
+        if (ride == null)
         {
             return false;
         }
+        
         ride.AssignDriver(request.DriverId);
-        await Repository.UpdateAsync(ride);
+        Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
         return await EventBus.PublishAsync(new DriverAssignedIntegrationEvent

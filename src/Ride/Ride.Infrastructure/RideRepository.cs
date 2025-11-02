@@ -5,10 +5,10 @@ public class RideRepository(RideContext Context, IMediator Mediator) : IRideRepo
     public async Task<Ride> GetByIdAsync(Guid id)
         => (await Context.Rides.FindAsync(id))!;
 
-    public async Task AddAsync(Ride ride)
+    public void Add(Ride ride)
         => Context.Rides.Add(ride);
 
-    public async Task UpdateAsync(Ride ride)
+    public void Update(Ride ride)
         => Context.Rides.Update(ride);
 
     public async Task SaveChangesAsync()

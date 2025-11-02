@@ -12,7 +12,7 @@ public class AddAvailabilityWindowCommandHandler(IDriverRepository Repository)
         }
         var window = new AvailabilityWindow(request.Day, request.Start, request.End);
         driver.AddAvailability(window);
-        await Repository.UpdateAsync(driver);
+        Repository.Update(driver);
         await Repository.SaveChangesAsync();
         return true;
     }

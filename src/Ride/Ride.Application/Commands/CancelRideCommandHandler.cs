@@ -10,8 +10,9 @@ public class CancelRideCommandHandler(IRideRepository Repository, IEventBus Even
         {
             return false;
         }
+    
         ride.CancelRide();
-        await Repository.UpdateAsync(ride);
+        Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
         return await EventBus.PublishAsync(new RideCancelledIntegrationEvent

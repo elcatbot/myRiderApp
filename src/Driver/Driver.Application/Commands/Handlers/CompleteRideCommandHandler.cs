@@ -11,7 +11,7 @@ public class CompleteRideCommandHandler(IDriverRepository Repository)
             return true;
         }
         driver.CompleteRide(request.RideId, request.DistanceKm);
-        await Repository.UpdateAsync(driver);
+        Repository.Update(driver);
         await Repository.SaveChangesAsync();
         return true;
     }

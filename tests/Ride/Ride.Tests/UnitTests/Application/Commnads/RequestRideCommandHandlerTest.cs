@@ -12,8 +12,7 @@ public class RequestRideCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         repoMock
-            .Setup(r => r.AddAsync(It.IsAny<Ride>()))
-            .Returns(Task.CompletedTask);
+            .Setup(r => r.Add(It.IsAny<Ride>()));
 
         repoMock
             .Setup(r => r.SaveChangesAsync())
@@ -31,7 +30,7 @@ public class RequestRideCommandHandlerTest
 
         // Assert
         Assert.NotEqual(Guid.Empty, result);
-        repoMock.Verify(r => r.AddAsync(It.IsAny<Ride>()), Times.Once);
+        repoMock.Verify(r => r.Add(It.IsAny<Ride>()), Times.Once);
         repoMock.Verify(r => r.SaveChangesAsync(), Times.Once);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Once);
     }
@@ -44,15 +43,15 @@ public class RequestRideCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         repoMock
-            .Setup(r => r.AddAsync(It.IsAny<Ride>()))
-            .ThrowsAsync(new InvalidOperationException("repo failure"));
+            .Setup(r => r.Add(It.IsAny<Ride>()))
+            .Throws(new InvalidOperationException("repo failure"));
 
         var handler = new RequestRideCommandHandler(repoMock.Object, eventBusMock.Object);
         var command = new RequestRideCommand(Guid.NewGuid(), new Location(1, 1), new Location(2, 2), 4000);
 
         // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(() => handler.Handle(command, CancellationToken.None));
-        repoMock.Verify(r => r.AddAsync(It.IsAny<Ride>()), Times.Once);
+        repoMock.Verify(r => r.Add(It.IsAny<Ride>()), Times.Once);
         repoMock.Verify(r => r.SaveChangesAsync(), Times.Never);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }

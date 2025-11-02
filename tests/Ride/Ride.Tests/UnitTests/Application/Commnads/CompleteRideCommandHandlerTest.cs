@@ -33,7 +33,7 @@ public class CompleteRideCommandHandlerTest
         Assert.Equal(RideStatus.Completed, ride.Status);
 
         // Repository update and save should be invoked
-        repositoryMock.Verify(r => r.UpdateAsync(ride), Times.Once);
+        repositoryMock.Verify(r => r.Update(ride), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
 
         // An integration event with correct payload should be published
@@ -67,7 +67,7 @@ public class CompleteRideCommandHandlerTest
 
         // Assert
         Assert.False(sut);
-        repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Never);
+        repositoryMock.Verify(r => r.Update(It.IsAny<Ride>()), Times.Never);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }

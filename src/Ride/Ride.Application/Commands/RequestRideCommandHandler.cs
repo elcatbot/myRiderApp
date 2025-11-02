@@ -13,7 +13,8 @@ public class RequestRideCommandHandler(IRideRepository Repository, IEventBus Eve
                 request.Dropoff,
                 request.Fare
             );
-            await Repository.AddAsync(ride);
+            
+            Repository.Add(ride);
             await Repository.SaveChangesAsync();
 
             await EventBus.PublishAsync(new RideRequestedIntegrationEvent

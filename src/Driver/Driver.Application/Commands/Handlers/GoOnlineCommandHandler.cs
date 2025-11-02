@@ -11,7 +11,7 @@ public class GoOnlineCommandHandler(IDriverRepository Repository)
             return false;
         }
         driver.GoOnline(new Location(request.Latitude, request.Longitude));
-        await Repository.UpdateAsync(driver);
+        Repository.Update(driver);
         await Repository.SaveChangesAsync();
         return true;
     }

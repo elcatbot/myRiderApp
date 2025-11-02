@@ -4,7 +4,7 @@ public interface IDriverRepository
 {
     Task<Driver> GetByIdAsync(Guid id);
     Task<Driver> GetFullByIdAsync(Guid id);
-    Task AddAsync(Driver ride);
-    Task UpdateAsync(Driver ride);
+    void Add(Driver ride);
+    void Update(Driver ride);
     Task SaveChangesAsync();
 }

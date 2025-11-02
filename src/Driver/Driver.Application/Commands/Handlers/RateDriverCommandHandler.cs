@@ -11,8 +11,8 @@ public class RateDriverCommandHandler(IDriverRepository Repository)
             return false;
         }
         driver.AddRating(request.Score);
+        Repository.Update(driver);
         await Repository.SaveChangesAsync();
-        await Repository.UpdateAsync(driver);
         return true;
     }
 }

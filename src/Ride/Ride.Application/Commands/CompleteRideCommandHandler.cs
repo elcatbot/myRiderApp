@@ -10,8 +10,9 @@ public class CompleteRideCommandHandler(IRideRepository Repository, IEventBus Ev
         {
             return false;
         }
+        
         ride.CompleteRide();
-        await Repository.UpdateAsync(ride);
+        Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
         return await EventBus.PublishAsync(new RideCompletedIntegrationEvent

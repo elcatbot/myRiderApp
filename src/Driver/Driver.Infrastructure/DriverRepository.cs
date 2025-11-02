@@ -13,10 +13,10 @@ public class DriverRepository(DriverContext Context, IMediator Mediator) : IDriv
             .Include(d => d.Availability)
             .FirstOrDefaultAsync(d => d.Id == id))!;
 
-    public async Task AddAsync(Driver ride)
+    public void Add(Driver ride)
         => Context.Drivers.Add(ride);
 
-    public async Task UpdateAsync(Driver ride)
+    public void Update(Driver ride)
         => Context.Drivers.Update(ride);
 
     public async Task SaveChangesAsync()

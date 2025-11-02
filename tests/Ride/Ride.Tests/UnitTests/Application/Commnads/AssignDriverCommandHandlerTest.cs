@@ -28,7 +28,7 @@ public class AssignDriverCommandHandlerTest
         Assert.Equal(RideStatus.Accepted, ride.Status);
 
         // Repository update and save should be invoked
-        repositoryMock.Verify(r => r.UpdateAsync(ride), Times.Once);
+        repositoryMock.Verify(r => r.Update(ride), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
 
         // An integration event with correct payload should be published
@@ -61,7 +61,7 @@ public class AssignDriverCommandHandlerTest
         
         // Act & Assert
         await Assert.ThrowsAsync<Exception>(() => handler.Handle(command, CancellationToken.None));
-        repositoryMock.Verify(r => r.UpdateAsync(It.IsAny<Ride>()), Times.Once);
+        repositoryMock.Verify(r => r.Update(It.IsAny<Ride>()), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }

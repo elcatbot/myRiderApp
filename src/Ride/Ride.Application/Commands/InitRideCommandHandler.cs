@@ -11,7 +11,7 @@ public class InitRideCommandHandler(IRideRepository Repository, IEventBus EventB
             return false;
         }
         ride.InitRide();
-        await Repository.UpdateAsync(ride);
+        Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
         return await EventBus.PublishAsync(new RideInitializedIntegrationEvent
