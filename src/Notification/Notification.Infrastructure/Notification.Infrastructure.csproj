@@ -5,15 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="MediatR" Version="13.0.0" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Driver.Infrastructure\Driver.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Utilities\Utilities.csproj" />
 
+  <ItemGroup>
+    <ProjectReference Include="..\Notification.Domain\Notification.Domain.csproj" />
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj" />
+    
   </ItemGroup>
-  
 </Project>

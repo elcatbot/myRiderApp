@@ -1,4 +1,4 @@
-namespace myRideApp.EventBus;
+namespace myRideApp.Utilities.EventBus;
 
 public class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEventBus> Logger)
     : IEventBus, IDisposable

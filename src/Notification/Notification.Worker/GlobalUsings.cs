@@ -1,0 +1,8 @@
+global using myRideApp.Notification.Application.IntegrationEvents;
+global using myRideApp.Notification.Domain.Abstractions;
+global using Notification.Worker;
+global using myRideApp.Notification.Application.IntegrationEvents.Handlers;
+global using myRideApp.Notification.Infrastructure;
+global using myRideApp.Utilities.Cache.Extensions;
+global using myRideApp.Utilities.EventBus.Extensions;
+global using myRideApp.Notification.Api.Extensions;

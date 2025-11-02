@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Aspire.RabbitMQ.Client" Version="9.5.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
-  </ItemGroup>
-
 </Project>

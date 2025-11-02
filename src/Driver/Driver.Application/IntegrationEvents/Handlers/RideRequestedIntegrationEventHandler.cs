@@ -2,7 +2,7 @@ namespace myRideApp.Drivers.Application.IntegrationEvents.Handlers;
 
 public class RideRequestedIntegrationEventHandler(
     IMediator Mediator,
-    IEventBus EventBus,
+    IPublishSubscribeEvents publishSubscribeEvents ,
     ILogger<RideRequestedIntegrationEventHandler> Logger
 )
     : IRequestHandler<RideRequestedIntegrationEvent>
@@ -26,7 +26,7 @@ public class RideRequestedIntegrationEventHandler(
         if (drivers != null && drivers.Count > 0)
         {
             var selected = drivers.FirstOrDefault();
-            await EventBus.PublishAsync(
+            await publishSubscribeEvents.PublishAsync(
                 new DriverNotifiedIntegrationEvent(
                     selected!.Id,
                     request.Pickup,

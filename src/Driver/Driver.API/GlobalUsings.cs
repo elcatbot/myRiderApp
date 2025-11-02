@@ -9,7 +9,7 @@ global using Microsoft.EntityFrameworkCore;
 global using myRideApp.Drivers.Application.Commands.Handlers;
 global using myRideApp.Drivers.Domain.Abstractions;
 global using myRideApp.Drivers.Infrastructure;
-global using myRideApp.EventBus.Extensions;
+global using myRideApp.Utilities.EventBus.Extensions;
 global using System.Text.Json;
 global using myRideApp.Drivers.Domain.Exceptions;
 global using myRideApp.Extensions.Hosting;

@@ -1,0 +1,10 @@
+global using MediatR;
+global using myRideApp.Utilities.EventBus;
+global using myRideApp.Notification.Domain.Abstractions;
+global using Microsoft.Extensions.DependencyInjection;
+global using myRideApp.Notification.Domain.Models;
+global using myRideApp.Utilities.Cache;
+global using System.Net;
+global using System.Net.Mail;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;

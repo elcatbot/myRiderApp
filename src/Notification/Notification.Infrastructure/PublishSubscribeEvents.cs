@@ -1,6 +1,6 @@
-namespace myRideApp.Drivers.Infrastructure;
+namespace myRideApp.Notification.Infrastructure;
 
-public class PublishSubscribeEvents(IEventBus EventBus, IServiceScopeFactory ScopeFactory)
+public class PublishSubscribeEvents(IEventBus EventBus, IServiceScopeFactory ScopeFactory) 
     : IPublishSubscribeEvents
 {
     public async Task PublishAsync<T>(T @event, string domain)
@@ -8,7 +8,7 @@ public class PublishSubscribeEvents(IEventBus EventBus, IServiceScopeFactory Sco
         await EventBus.PublishAsync(@event, domain);
     }
 
-    public async Task SubscribeAsync<T>(string domain)
+    public async Task SubscribeAsync<T>(string domain) 
     {
         await EventBus.SubscribeAsync<T>(domain, async evt =>
         {

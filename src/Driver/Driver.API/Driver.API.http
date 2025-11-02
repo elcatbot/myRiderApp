@@ -31,7 +31,7 @@ PUT {{Driver.API_HostAddress}}/api/driver/go-online
 Content-Type: application/json
 
 {
-  "DriverId": "750e2842-0388-48f3-a45f-530aca55163f",
+  "DriverId": "b281740f-c9cd-4286-9e23-4a97a30282ba",
   "Latitude": "19.401840",
   "Longitude": "-99.142091"
 }
@@ -43,10 +43,10 @@ PUT {{Driver.API_HostAddress}}/api/driver/availability-window
 Content-Type: application/json
 
 {
-  "DriverId": "750e2842-0388-48f3-a45f-530aca55163f",
-  "Day": 6,
-  "Start": "06:00:00",
-  "End": "21:00:00"
+  "DriverId": "3f95c38f-2c04-4298-8d6c-e450b487c7af",
+  "Day": 7,
+  "Start": "01:00:00",
+  "End": "23:59:00"
 }
 
 ###

@@ -1,4 +1,4 @@
-namespace myRideApp.EventBus;
+namespace myRideApp.Utilities.EventBus;
 
 public interface IEventBus
 {

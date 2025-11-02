@@ -8,7 +8,7 @@ public static class ApplicationExtensions
 
         builder.AddRabbitMqEventBus(builder.Configuration["EventBusConenction"]!);
 
-        builder.Services.AddSingleton<ISubscribeEvents, SubscribeEvents>();
+        builder.Services.AddSingleton<IPublishSubscribeEvents, PublishSubscribeEvents>();
 
         builder.Services.AddDbContext<DriverContext>(o => o.UseInMemoryDatabase("Driver"));
 

@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Driver.Application\Driver.Application.csproj" />
     <ProjectReference Include="..\..\Aspire.ServiceDefaults\Aspire.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\..\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

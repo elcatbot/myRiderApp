@@ -5,4 +5,4 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using myRideApp.Drivers.Infrastructure.Configurations;
 global using Microsoft.Extensions.DependencyInjection;
-global using myRideApp.EventBus;
+global using myRideApp.Utilities.EventBus;

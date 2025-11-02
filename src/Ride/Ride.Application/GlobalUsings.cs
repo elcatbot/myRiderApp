@@ -5,5 +5,5 @@ global using myRideApp.Rides.Domain;
 global using myRideApp.Rides.Application.IntegrationEvents;
 global using myRideApp.Rides.Domain.Events;
 global using Microsoft.Extensions.Logging;
-global using myRideApp.EventBus;
+global using myRideApp.Utilities.EventBus;
 global using myRideApp.Rides.Domain.Models;

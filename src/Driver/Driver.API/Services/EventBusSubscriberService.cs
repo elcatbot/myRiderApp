@@ -1,6 +1,6 @@
 namespace myRideApp.Drivers.Api.Services;
 
-public class EventBusSubscriberService(ISubscribeEvents SubscribeEvents) : BackgroundService
+public class EventBusSubscriberService(IPublishSubscribeEvents SubscribeEvents) : BackgroundService
 {
     private const string RideDomain = "Ride";
     
