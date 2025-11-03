@@ -16,3 +16,4 @@ global using myRideApp.Extensions.Hosting;
 global using myRideApp.Drivers.Api.Extensions;
 global using myRideApp.Drivers.Application.IntegrationEvents;
 global using myRideApp.Drivers.Api.Services;
+global using myRideApp.Utilities.Resiliency;

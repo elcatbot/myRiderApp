@@ -14,6 +14,8 @@ public static class ApplicationExtensions
 
         builder.Services.AddTransient<IDriverRepository, DriverRepository>();
 
+        builder.Services.AddSingleton<IRetryPolicyService, RetryPolicyService>();
+
         builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(GoOnlineCommandHandler)));
 
         builder.Services.AddOpenApi();

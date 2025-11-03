@@ -6,3 +6,4 @@ global using myRideApp.Notification.Infrastructure;
 global using myRideApp.Utilities.Cache.Extensions;
 global using myRideApp.Utilities.EventBus.Extensions;
 global using myRideApp.Notification.Api.Extensions;
+global using myRideApp.Utilities.Resiliency;

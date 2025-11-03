@@ -20,6 +20,7 @@ public static class ApplicationExtensions
 
         builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("Email:Smtp"));
 
+        builder.Services.AddSingleton<IRetryPolicyService, RetryPolicyService>();
 
     }
 }

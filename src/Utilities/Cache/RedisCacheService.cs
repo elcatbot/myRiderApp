@@ -1,6 +1,6 @@
 namespace myRideApp.Utilities.Cache;
 
-public class RedisCacheService : ICacheService
+public sealed class RedisCacheService : ICacheService
 {
     private readonly IDatabase _db;
 

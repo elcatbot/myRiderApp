@@ -1,7 +1,10 @@
 namespace myRideApp.Drivers.Infrastructure;
 
-public class PublishSubscribeEvents(IEventBus EventBus, IServiceScopeFactory ScopeFactory)
-    : IPublishSubscribeEvents
+public class PublishSubscribeEvents(
+    IEventBus EventBus,
+    IServiceScopeFactory ScopeFactory,
+    IRetryPolicyService RetryPolicy
+) : IPublishSubscribeEvents
 {
     public async Task PublishAsync<T>(T @event, string domain)
     {
@@ -14,7 +17,10 @@ public class PublishSubscribeEvents(IEventBus EventBus, IServiceScopeFactory Sco
         {
             var scope = ScopeFactory.CreateScope();
             var handler = scope.ServiceProvider.GetRequiredService<IMediator>();
-            await handler.Send(evt!, CancellationToken.None);
+
+            await RetryPolicy.ExecuteWithRetryAsync<T>( // Retry Policy (Resiliency)
+                () => handler.Send(evt!, CancellationToken.None)
+            );
         });
     }
 }

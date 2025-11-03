@@ -1,6 +1,6 @@
 namespace myRideApp.Utilities.EventBus;
 
-public class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEventBus> Logger)
+public sealed class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<RabbitMqEventBus> Logger)
     : IEventBus, IDisposable
 {
     public async Task<bool> PublishAsync<TEvent>(TEvent @event, string domain)
