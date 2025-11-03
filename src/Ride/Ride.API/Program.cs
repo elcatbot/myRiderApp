@@ -1,7 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApplicationServices();
-builder.Host.AddHostServices();
 
 // builder.AddServiceDefaults();
 

@@ -6,6 +6,8 @@ public static class ApplicationExtensions
     {
         // builder.AddElasticsearchClient("elasticsearch");
 
+        builder.AddHostServices();
+
         builder.AddRabbitMqEventBus(builder.Configuration["EventBusConenction"]!);
 
         builder.Services.AddSingleton<IPublishSubscribeEvents, PublishSubscribeEvents>();

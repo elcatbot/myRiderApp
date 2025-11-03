@@ -2,18 +2,18 @@ namespace myRideApp.Extensions.Hosting;
 
 public static class HostExtensions
 {
-    public static void AddHostServices(this IHostBuilder builder)
+    public static void AddHostServices(this IHostApplicationBuilder builder)
     {
-        builder.UseSerilog((context, configureLogger) =>
+        builder.Services.AddSerilog((context, configureLogger) =>
         {
             configureLogger
                 .Enrich.FromLogContext()
                 .WriteTo.Console();
 
-            var isElasticsearch = context.Configuration["elasticsearchConnection:host"];
+            var isElasticsearch = builder.Configuration["elasticsearchConnection:host"];
             if (!string.IsNullOrEmpty(isElasticsearch))
             {
-                configureLogger.WriteTo.Elasticsearch(new[] { new Uri(context.Configuration["elasticsearchConnection:host"]!) }, opts =>
+                configureLogger.WriteTo.Elasticsearch(new[] { new Uri(builder.Configuration["elasticsearchConnection:host"]!) }, opts =>
                 {
                     opts.DataStream = new DataStreamName("logs", "ride-api", "demo");
                     opts.BootstrapMethod = BootstrapMethod.Failure;
@@ -28,8 +28,8 @@ public static class HostExtensions
                 {
                     transport.Authentication(
                         new BasicAuthentication(
-                            context.Configuration["elasticsearchConnection:user"]!,
-                            context.Configuration["elasticsearchConnection:password"]!
+                            builder.Configuration["elasticsearchConnection:user"]!,
+                            builder.Configuration["elasticsearchConnection:password"]!
                         )
                     )
                     .ServerCertificateValidationCallback((o, cert, chain, errors) => true);
