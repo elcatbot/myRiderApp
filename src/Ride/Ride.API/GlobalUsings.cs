@@ -13,3 +13,5 @@ global using System.Text.Json;
 global using myRideApp.Rides.Domain.Exceptions;
 global using myRideApp.Extensions.Hosting;
 global using myRideApp.Utilities.EventBus.Extensions;
+global using myRideApp.Rides.Api.Services;
+global using myRideApp.Utilities.Resiliency;

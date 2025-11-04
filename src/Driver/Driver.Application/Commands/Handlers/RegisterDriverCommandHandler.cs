@@ -3,8 +3,7 @@ using myRideApp.Notification.Application.IntegrationEvents;
 namespace myRideApp.Drivers.Application.Commands.Handlers;
 
 public class RegisterDriverCommandHandler(
-    IDriverRepository Repository,
-    IPublishSubscribeEvents publishEvents
+    IDriverRepository Repository
 )
     : IRequestHandler<RegisterDriverCommand, Guid>
 {
@@ -16,20 +15,8 @@ public class RegisterDriverCommandHandler(
             PhoneNumber.Create(request.PhoneNumber!),
             new Vehicle(request.Make!, request.Model!, request.PlateNumber!)
         );
-        
         Repository.Add(driver);
         await Repository.SaveChangesAsync();
-
-        await publishEvents.PublishAsync(
-            new DriverProfileUpdatedIntegrationEvent(
-                driver.Id,
-                driver.Name!,
-                driver.Email!.Value,
-                string.Empty,
-                driver.RegisteredAt
-            )
-        , nameof(Driver));
-
         return driver.Id;
     }
 }

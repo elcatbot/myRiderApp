@@ -1,11 +1,7 @@
 global using Microsoft.EntityFrameworkCore;
 global using myRideApp.Rides.Domain;
 global using myRideApp.Rides.Domain.Abstractions;
-global using System.Text;
 global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.Hosting;
-global using RabbitMQ.Client;
-global using System.Text.Json;
-global using Microsoft.Extensions.Logging;
 global using MediatR;
-global using myRideApp.Rides.Infrastructure;
+global using myRideApp.Utilities.EventBus;
+global using myRideApp.Utilities.Resiliency;

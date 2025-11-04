@@ -23,6 +23,8 @@ public sealed class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<Rab
 
         channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, body: body);
 
+        Logger.LogInformation($"{@event!.GetType().Name} published to Message Broker");
+
         return true;
     }
 

@@ -1,3 +1,3 @@
 namespace myRideApp.Drivers.Domain.Events;
 
-public record DriverAcceptedRideDomainEvent(Guid DriverId, Guid RideId) : INotification { }
+public record DriverAcceptedRideDomainEvent(Guid DriverId, Guid RideId) : INotification;

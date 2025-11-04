@@ -36,7 +36,7 @@ public class Driver : IAggregateRoot
         History = new DrivingHistory();
         RegisteredAt = DateTime.UtcNow;
 
-        _domainEvents!.Add(new DriverRegisteredDomainEvent(Id, RegisteredAt));
+        _domainEvents!.Add(new DriverRegisteredDomainEvent(Id, Name, Email.Value, string.Empty, RegisteredAt));
     }
 
     public void GoOnline(Location location)

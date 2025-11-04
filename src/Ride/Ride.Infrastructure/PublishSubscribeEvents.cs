@@ -1,4 +1,4 @@
-namespace myRideApp.Notification.Infrastructure;
+namespace myRideApp.Rides.Infrastructure;
 
 public class PublishSubscribeEvents(
     IEventBus EventBus,
@@ -11,13 +11,13 @@ public class PublishSubscribeEvents(
         await EventBus.PublishAsync(@event, domain);
     }
 
-    public async Task SubscribeAsync<T>(string domain) 
+    public async Task SubscribeAsync<T>(string domain)  where T : INotification
     {
         await EventBus.SubscribeAsync<T>(domain, async evt =>
         {
             var scope = ScopeFactory.CreateScope();
             var notification = scope.ServiceProvider.GetRequiredService<IMediator>();
-            
+
             await RetryPolicy.ExecuteWithRetryAsync<T>( // Retry Policy (Resiliency)
                 () => notification.Publish(evt!, CancellationToken.None)
             );

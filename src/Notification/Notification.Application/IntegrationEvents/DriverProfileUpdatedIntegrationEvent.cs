@@ -7,4 +7,4 @@ public record DriverProfileUpdatedIntegrationEvent
     string Email,
     string Locale, // "en-US"
     DateTime UpdatedAt
-) : IRequest;
+) : INotification;

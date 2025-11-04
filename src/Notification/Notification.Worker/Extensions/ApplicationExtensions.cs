@@ -14,7 +14,7 @@ public static class ApplicationExtensions
 
         builder.AddCacheService("CacheConnection");
 
-        builder.Services.AddTransient<IDriverContactRepository, DriverContactRepository>();
+        builder.Services.AddTransient(typeof(IContactRepository<>), typeof(ContactRepository<>));
 
         builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(DriverNotifiedIntegrationEventHandler)));
 

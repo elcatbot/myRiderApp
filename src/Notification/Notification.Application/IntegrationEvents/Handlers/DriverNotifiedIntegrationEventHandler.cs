@@ -1,17 +1,17 @@
 namespace myRideApp.Notification.Application.IntegrationEvents.Handlers;
 
 public class DriverNotifiedIntegrationEventHandler(
-    IDriverContactRepository Repository,
+    IContactRepository<DriverContact> Repository,
     IEmailSender Email,
     ILogger<DriverNotifiedIntegrationEventHandler> Logger
 )
-    : IRequestHandler<DriverNotifiedIntegrationEvent>
+    : INotificationHandler<DriverNotifiedIntegrationEvent>
 {
     public async Task Handle(DriverNotifiedIntegrationEvent request, CancellationToken cancellationToken)
     {
         try
         {
-            var contact = await Repository.GetDriverContactAsync(request.DriverId);
+            var contact = await Repository.GetContactAsync(request.DriverId);
             if (contact == null || string.IsNullOrEmpty(contact.Email))
             {
                 return;

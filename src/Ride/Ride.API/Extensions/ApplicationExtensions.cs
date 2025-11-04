@@ -8,6 +8,10 @@ public static class ApplicationExtensions
 
         builder.AddHostServices();
 
+        builder.Services.AddSingleton<IPublishSubscribeEvents, PublishSubscribeEvents>();
+
+        builder.Services.AddSingleton<IRetryPolicyService, RetryPolicyService>();
+
         builder.AddRabbitMqEventBus(builder.Configuration["EventBusConenction"]!);
         
         builder.Services.AddDbContext<RideContext>(o => o.UseInMemoryDatabase("Rides"));
@@ -17,5 +21,8 @@ public static class ApplicationExtensions
         builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(RequestRideCommandHandler)));
 
         builder.Services.AddOpenApi();
+
+        builder.Services.AddHostedService<EventBusSubscriberService>();
+
     }
 }

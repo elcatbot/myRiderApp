@@ -7,4 +7,4 @@ public record DriverNotifiedIntegrationEvent(
     Guid RideId,
     decimal Fare,
     DateTime NotifiedAt
-) : IRequest;
+) : INotification;

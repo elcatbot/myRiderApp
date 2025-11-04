@@ -1,10 +1,10 @@
 namespace myRideApp.Notification.Application.IntegrationEvents.Handlers;
 
 public class DriverProfileUpdatedIntegrationEventHandler(
-    IDriverContactRepository Repository,
+    IContactRepository<DriverContact> Repository,
     ILogger<DriverProfileUpdatedIntegrationEventHandler> Logger
 )
-    : IRequestHandler<DriverProfileUpdatedIntegrationEvent>
+    : INotificationHandler<DriverProfileUpdatedIntegrationEvent>
 {
     public async Task Handle(DriverProfileUpdatedIntegrationEvent request, CancellationToken cancellationToken)
     {
@@ -12,13 +12,13 @@ public class DriverProfileUpdatedIntegrationEventHandler(
         {
             var driver = new DriverContact
             {
-                DriverId = request.DriverId,
+                Id = request.DriverId,
                 Name = request.Name,
                 Email = request.Email,
                 Locale = request.Locale,
                 UpdatedAt = request.UpdatedAt
             };
-            await Repository.UpdateDriverContactAsync(driver);
+            await Repository.UpdateContactAsync(driver);
 
             Logger.LogInformation($"Driver contact {request.DriverId} updated");
         }

@@ -31,7 +31,7 @@ PUT {{Driver.API_HostAddress}}/api/driver/go-online
 Content-Type: application/json
 
 {
-  "DriverId": "b281740f-c9cd-4286-9e23-4a97a30282ba",
+  "DriverId": "60d07298-8129-46ca-8beb-7604bafe54d7",
   "Latitude": "19.401840",
   "Longitude": "-99.142091"
 }
@@ -43,8 +43,8 @@ PUT {{Driver.API_HostAddress}}/api/driver/availability-window
 Content-Type: application/json
 
 {
-  "DriverId": "3f95c38f-2c04-4298-8d6c-e450b487c7af",
-  "Day": 7,
+  "DriverId": "60d07298-8129-46ca-8beb-7604bafe54d7",
+  "Day": 2,
   "Start": "01:00:00",
   "End": "23:59:00"
 }
@@ -56,8 +56,8 @@ PUT {{Driver.API_HostAddress}}/api/driver/ride/accept
 Content-Type: application/json
 
 {
-  "DriverId": "19873363-0922-4dd2-8941-fa50b706526d",
-  "RideId": "37c7bd12-4481-4f72-bdfa-781e505ae73e"
+  "DriverId": "60d07298-8129-46ca-8beb-7604bafe54d7",
+  "RideId": "26671059-5263-4c81-b33d-f469c8ad1ad6"
 }
 
 ###

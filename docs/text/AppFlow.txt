@@ -1,0 +1,44 @@
+User Checks Ride and Fare Preview [HTTP]
+    ---> CalculateRideCommand (Ride Service)
+    ---> CalculateFareCommand (Pricing Service)
+    ---> GetLocationCommand (Location Service)
+
+
+User Request Ride [HTTP]
+    ---> RequestRideCommand  (Ride Service) 
+    ---> RideRequestedIntegrationEvent  (Ride -> Driver Service) 
+    ---> DriverNotifiedIntegrationEvent  (Driver -> Notification Service)
+
+
+Driver Accepts Ride [HTTP]
+    ---> DriverAcceptRideCommand  (Driver Service)
+    ---> DriverAcceptedRideIntegrationEvent  (Driver -> Ride Service)
+    ---> AssignDriverCommand  (Ride Service)
+    ---> RiderNotifiedIntegrationEvent (Ride -> Notification Service)
+
+
+User | Driver Cancels Ride [HTTP]
+    ---> CancelRideCommand (Ride Service)
+    ---> RideCancelledIntegrationEvent (Ride -> Driver & Notification Service)
+    ---> GoOnlineCommand (Driver Service)
+
+
+Driver Initializes Ride [HTTP]
+    ---> InitRideCommand (Ride Service)
+    ---> RideInitializedIntegrationEvent (Ride -> Notification Service)
+
+
+Driver Completes Ride [HTTP]
+    ---> CompleteRideCommand (Ride Service)
+    ---> RideCompletedIntegrationEvent (Ride -> Driver & Notification & Payment Service)
+    ---> CompleteRideCommand (Driver Service)
+    ---> GeneratePaymentCommand (Payment Service)
+    ---> ReceiptGeneratedCommand (Payment -> Notification Service)
+
+
+User Pays Ride [HTTP]
+    ---> RidePaidCommand (Payment Service)
+
+
+User & Driver Rates Ride [HTTP]  
+    ---> RateRiderCommand (Rate Service) | ---> RateDriverCommand (Rate Service)

@@ -10,17 +10,12 @@ public class AssignDriverCommandHandler(IRideRepository Repository, IEventBus Ev
         {
             return false;
         }
-        
+
         ride.AssignDriver(request.DriverId);
+        
         Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
-        return await EventBus.PublishAsync(new DriverAssignedIntegrationEvent
-        {
-            RideId = ride.Id,
-            RiderId = ride.RiderId,
-            DriverId = ride.DriverId,
-            RequestedAt = ride.RequestedAt
-        }, nameof(Ride));
+        return true;
     }
 }

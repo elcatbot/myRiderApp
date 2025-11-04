@@ -39,7 +39,7 @@ public class Ride
         DriverId = driverId;
         Status = RideStatus.Accepted;
         UpdatedAt = DateTime.UtcNow;
-        AddDomainEvent(new RideDriverAssignedDomainEvent(Id, driverId, DateTime.UtcNow));
+        AddDomainEvent(new DriverAssignedDomainEvent(Id, RiderId, driverId, DateTime.UtcNow));
     }
 
     public void InitRide()

@@ -2,7 +2,7 @@ using myRideApp.Notification.Domain.Abstractions;
 
 namespace myRideApp.Notification.Domain.Models;
 
-public class DriverContact : IEntity
+public class RiderContact : IEntity
 {
     public Guid Id { get; set; }
 
@@ -23,3 +23,4 @@ public class DriverContact : IEntity
     // Metadata
     public DateTime UpdatedAt { get; set; }
 }
+
