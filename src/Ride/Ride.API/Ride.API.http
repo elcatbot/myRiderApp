@@ -9,7 +9,7 @@ POST {{Rider.API_HostAddress}}/api/rides/
 Content-Type: application/json
 
 {
-  "RiderId": "971e6c78-f337-4396-87b7-e93f7a5389d8",
+  "RiderId": "73909b9c-c26b-4af0-b55b-721d4b50d658",
   "Pickup": {
     "Latitude": "19.401840",
     "Longitude": "-99.142091"
@@ -27,8 +27,8 @@ PUT {{Rider.API_HostAddress}}/api/rides/assign
 Content-Type: application/json
 
 {
-  "RideId": "817bb130-2bbb-4624-8642-97f0ad07b1bc",
-  "DriverId": "b6a7dde4-5daf-496c-b7a9-c53921f23c27"
+  "RideId": "85fd15e9-cdb4-4c49-a864-bc1ef2c49bd0",
+  "DriverId": "6baa9bec-873b-4037-be1d-87de3dd84fec"
 }
 
 

@@ -16,9 +16,11 @@ Content-Type: application/json
 
 {
   "Email": "rider1@rides.com",
+  "Name": "RiderOne",
   "Password": "MyP455w0rd!",
   "Role": "rider"
 }
+
 
 ###
 POST {{Identity.API_HostAddress}}/api/auth/disable-user

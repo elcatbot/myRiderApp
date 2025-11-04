@@ -17,3 +17,6 @@ global using myRideApp.Extensions.Hosting;
 global using myRideApp.Identity.Api;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using System.Web;
+global using myRideApp.Utilities.EventBus;
+global using myRideApp.Utilities.EventBus.Extensions;
+global using myRideApp.Identity.IntegrationEvents;

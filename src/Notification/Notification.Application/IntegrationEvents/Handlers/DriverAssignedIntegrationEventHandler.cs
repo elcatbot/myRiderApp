@@ -14,6 +14,7 @@ public class DriverAssignedIntegrationEventHandler(
             var contact = await Repository.GetContactAsync(request.RiderId);
             if (contact == null || string.IsNullOrEmpty(contact.Email))
             {
+                Logger.LogInformation($"RiderContact not found for Rider {request.RiderId}. Email not sent.");
                 return;
             }
             var subject = "Ride Acceptance Notification";

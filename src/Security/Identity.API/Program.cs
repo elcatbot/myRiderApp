@@ -1,9 +1,12 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.AddHostServices();
+builder.AddHostServices();
 builder.AddGlobalServices();
-builder.AddServiceDefaults();
+// builder.AddServiceDefaults();
+
+builder.AddRabbitMqEventBus(builder.Configuration["EventBusConnection"]!);
+builder.Services.AddSingleton<IPublishEvents, PublishEvents>();
+
 
 builder.Services.AddOpenApi();
 

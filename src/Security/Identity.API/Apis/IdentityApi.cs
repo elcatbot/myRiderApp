@@ -21,9 +21,10 @@ public static class IdentityApi
         [FromBody] UserRegister request,
         UserManager<AppUser> userManager,
         RoleManager<IdentityRole> roleManager,
+        IPublishEvents publishEvents,
         IConfiguration config)
     {
-        var user = new AppUser { UserName = request.Email, Email = request.Email, State = UserState.Enabled };
+        var user = new AppUser { UserName = request.Name, Email = request.Email, State = UserState.Enabled };
         var result = await userManager.CreateAsync(user, request.Password!);
 
         if (!result.Succeeded)
@@ -42,6 +43,16 @@ public static class IdentityApi
         var confirmationLink = $"{config["App:BaseUrl"]}/confirm-email?userId={user.Id}&token={Uri.EscapeDataString(token)}";
 
         // TODO: Send confirmationLink via email
+
+        await publishEvents.PublishAsync(
+            new RiderProfileUpdatedIntegrationEvent(
+                new Guid(user.Id),
+                request.Name!,
+                request.Email!,
+                "en-US",
+                DateTime.UtcNow
+            )
+        , "Rider");
 
         return TypedResults.Created($"Email confirmation link: {confirmationLink}");
     }

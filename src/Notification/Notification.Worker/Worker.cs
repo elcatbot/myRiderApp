@@ -6,13 +6,16 @@ public class NotificationWorker(
 {
     private const string DriverDomain = "Driver";
     private const string RideDomain = "Ride";
+    private const string RiderDomain = "Rider";
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await SubscribeEvents.SubscribeAsync<DriverProfileUpdatedIntegrationEvent>(DriverDomain);
         await SubscribeEvents.SubscribeAsync<DriverNotifiedIntegrationEvent>(DriverDomain);
-        
         await SubscribeEvents.SubscribeAsync<DriverAssignedIntegrationEvent>(DriverDomain);
+
+        await SubscribeEvents.SubscribeAsync<RiderProfileUpdatedIntegrationEvent>(RiderDomain);
+        
         
         await Task.Delay(2000, stoppingToken);
     }
