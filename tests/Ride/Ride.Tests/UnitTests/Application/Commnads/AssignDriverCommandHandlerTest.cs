@@ -37,7 +37,7 @@ public class AssignDriverCommandHandlerTest
                 ev.RideId == ride.Id &&
                 ev.DriverId == driverId &&
                 ev.RiderId == riderId &&
-                ev.RequestedAt == ride.RequestedAt
+                ev.AssignedAt == ride.RequestedAt
             ), "Ride"), Times.Once);
     }
 

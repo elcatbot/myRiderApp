@@ -1,8 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.AddHostServices();
 builder.AddApplicationServices();
-builder.Host.AddHostServices();
 builder.AddServiceDefaults();
 
 builder.Configuration.AddJsonFile("appsettings.Yarp.json", optional: false, reloadOnChange: true);
