@@ -1,0 +1,15 @@
+global using myRideApp.Location.Domain.Abstractions;
+global using myRideApp.Extensions.Hosting;
+global using myRideApp.Location.Infrastructure;
+global using myRideApp.Notification.Infrastructure;
+global using myRideApp.Utilities.Cache.Extensions;
+global using myRideApp.Utilities.EventBus.Extensions;
+global using myRideApp.Utilities.Resiliency;
+global using myRideApp.Location.GRPC.Extensions;
+global using Microsoft.EntityFrameworkCore;
+global using myRideApp.Drivers.Infrastructure;
+global using Grpc.Core;
+global using MediatR;
+global using myRideApp.Location.Application.Queries;
+global using myRideApp.Location.Grpc;
+global using myRideApp.Location.GRPC;

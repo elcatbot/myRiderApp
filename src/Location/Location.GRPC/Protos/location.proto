@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "myRideApp.Location.Grpc";
+
+service LocationService {
+  rpc GetNearbyDrivers (GetNearbyDriversRequest) returns (NearbyDriversResponse);
+}
+
+message GetNearbyDriversRequest {
+  double latitude = 1;
+  double longitude = 2;
+  double radius_km = 3;
+}
+
+message NearbyDriversResponse {
+  repeated Driver drivers = 1;
+}
+
+message Driver {
+  string driver_id = 1;
+  double latitude = 2;
+  double longitude = 3;
+}
