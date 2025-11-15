@@ -1,0 +1,140 @@
+<!-- <p>ride-list works!</p>
+
+<p>List of Rides:</p>
+<div *ngIf="rides.length > 0">
+  <ul>
+    <li *ngFor="let ride of rides">
+      {{ ride.id }} - {{ ride.pickUp.latitude }} to {{ ride.dropOff.longitude }} on {{ ride.requestedAt | date:'short' }}
+    </li>
+  </ul>
+</div> -->
+
+<!-- ride-list.component.html -->
+<section class="ride-list" aria-label="Passenger rides">
+  <header class="ride-list__header">
+    <h2 class="ride-list__title">Your rides</h2>
+
+    <div class="ride-list__filters">
+      <!-- Example filter hooks (optional): wire up in TS as needed -->
+      <label class="filter">
+        <span class="filter__label">Status</span>
+        <select class="filter__select">
+          <option value="">All</option>
+          <option value="Requested">Requested</option>
+          <option value="Accepted">Accepted</option>
+          <option value="InProgress">In progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </label>
+
+      <label class="filter">
+        <span class="filter__label">Sort</span>
+        <select class="filter__select" >
+          <option value="requestedAt">Date</option>
+          <option value="fare">Fare</option>
+          <option value="status">Status</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <div class="ride-list__content" *ngIf="rides?.length; else emptyState">
+    <article
+      class="ride-card"
+      *ngFor="let ride of rides "
+      [attr.data-status]="ride.status"
+      aria-label="Ride card"
+    >
+      <div class="ride-card__header">
+        <div class="ride-card__id">
+          <span class="muted">ID</span>
+          <span class="mono">{{ ride.id }}</span>
+        </div>
+          
+        <span class="status-badge" >
+          {{ ride.status }}
+        </span>
+      </div>
+
+      <div class="ride-card__body">
+        <div class="route">
+          <div class="route__stop route__stop--pickup">
+            <div class="dot"></div>
+            <div class="route__info">
+              <span class="label">Pickup</span>
+              <span class="value">
+                {{ (ride.pickUp?.latitude + ', ' + ride.pickUp?.longitude) }}
+                
+              </span>
+            </div>
+          </div>
+
+          <div class="route__line" aria-hidden="true"></div>
+
+          <div class="route__stop route__stop--dropoff">
+            <div class="dot"></div>
+            <div class="route__info">
+              <span class="label">Drop-off</span>
+              <span class="value">
+                {{ (ride.dropOff?.latitude + ', ' + ride.dropOff?.longitude) }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="meta">
+          <div class="meta__item">
+            <span class="label">Requested</span>
+            <time class="value" [attr.datetime]="ride.requestedAt | date:'yyyy-MM-ddTHH:mm:ssZ'">
+              {{ ride.requestedAt | date:'MMM d, y, h:mm a' }}
+            </time>
+          </div>
+
+          <div class="meta__item" *ngIf="ride.fare !== undefined">
+            <span class="label">Fare</span>
+            <span class="value">{{ ride.fare.amount }}</span>
+          </div>
+
+          <div class="meta__item">
+            <span class="label">Rider</span>
+            <span class="value mono">{{ ride.riderId }}</span>
+          </div>
+
+          <div class="meta__item" *ngIf="ride.driverId">
+            <span class="label">Driver</span>
+            <span class="value mono">{{ ride.driverId }}</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="ride-card__footer">
+        <!-- Example actions; enable/disable per status -->
+        <button
+          type="button"
+          class="btn btn--primary"
+          aria-label="View ride details"
+        >
+          View details
+        </button>
+
+        <button
+          type="button"
+          class="btn btn--ghost"
+          [disabled]="ride.status !== 'Requested'"
+          aria-label="Cancel ride"
+        >
+          Cancel
+        </button>
+      </footer>
+    </article>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state" role="status" aria-live="polite">
+      <div class="empty-state__icon" aria-hidden="true">🚗</div>
+      <h3 class="empty-state__title">No rides yet</h3>
+      <p class="empty-state__desc">When you request a ride, it will appear here.</p>
+    </div>
+  </ng-template>
+</section>
