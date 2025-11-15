@@ -2,10 +2,12 @@ namespace myRideApp.Rides.Application.DTOs;
 
 public record RideDto
 {
-    public Guid Id { get; set; }
-    public Guid RiderId { get; set; }
-    public Guid? DriverId { get; set; }
-    public RideStatus? Status { get; set; }
-    public Fare? Fare { get; set; }
-    public DateTime RequestedAt { get; set; }
+    public Guid Id { get; init; }
+    public Guid RiderId { get; init; }
+    public Guid? DriverId { get; init; }
+    public string? Status { get; init; }
+    public Fare? Fare { get; init; }
+    public Location? PickUp { get;  init; }
+    public Location? DropOff { get;  init; }
+    public DateTime RequestedAt { get; init; }
 }

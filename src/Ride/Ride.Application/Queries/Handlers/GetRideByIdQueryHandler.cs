@@ -14,7 +14,7 @@ public class GetRideByIdQueryHandler(IRideRepository Repository) : IRequestHandl
             Id = ride.Id,
             RiderId = ride.RiderId,
             DriverId = ride.DriverId,
-            Status = ride.Status,
+            Status = ride.Status.ToString(),
             Fare = ride.Fare,
             RequestedAt = ride.RequestedAt
         };

@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddHostServices();
 builder.AddGlobalServices();
+builder.AddWebCors();
 // builder.AddServiceDefaults();
 
 builder.AddRabbitMqEventBus(builder.Configuration["EventBusConnection"]!);
@@ -26,6 +27,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors("AllowWebAngular");
 
 app.UseApplicationPipeline();
 

@@ -66,7 +66,6 @@ public static class IdentityApi
     )
     {
         var user = await userManager.FindByEmailAsync(request.Email);
-        Console.WriteLine($"USER => {user!.Id}");
         if (user == null || !await userManager.CheckPasswordAsync(user, request.Password))
         {
             return TypedResults.Unauthorized();

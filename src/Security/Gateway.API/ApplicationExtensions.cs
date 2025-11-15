@@ -6,40 +6,9 @@ public static class ApplicationExtensions
     {
         AddReverseProxy(builder);
         AddRequestRateLimit(builder);
-        AddAuth(builder);
+        builder.AddAuth();
     }
-
-    private static void AddAuth(IHostApplicationBuilder builder)
-    {
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-        {
-            options.TokenValidationParameters = new()
-            {
-                ValidIssuer = builder.Configuration["JwtToken:Issuer"],
-                ValidAudience = builder.Configuration["JwtToken:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtToken:Key"]!))
-            };
-            options.RequireHttpsMetadata = false;
-            options.IncludeErrorDetails = true;
-            options.SaveToken = true;
-        });
-
-        builder.Services.AddAuthorization(options =>
-        {
-            // Example policy: only drivers
-            options.AddPolicy("Authenticated", policy =>
-            {
-                policy.RequireAuthenticatedUser();
-            });
-
-            options.AddPolicy("RiderOnly", policy =>
-            {
-                policy.RequireRole("rider");
-            });
-        });
-    }
-
+    
     private static void AddRequestRateLimit(IHostApplicationBuilder builder)
     {
 

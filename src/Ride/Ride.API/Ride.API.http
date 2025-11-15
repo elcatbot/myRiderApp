@@ -3,17 +3,33 @@
 GET {{Rider.API_HostAddress}}/api/rides/23c8662d-488d-425e-8f7d-30a611dcac50
 Accept: application/json
 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOGVjZDFjNC00ZmQ3LTRkNjktOWU3MS1jMWQyZjA0ODFjOTgiLCJlbWFpbCI6ImRyaXZlcjFAcmlkZXMuY29tIiwicm9sZSI6ImRyaXZlciIsImV4cCI6MTc2MzE1NzU2OSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAxIiwiYXVkIjoicmlkZS1hcGkifQ.5liAtOaQl0_A65bNjxPYd6OoKVve5iud_PuNc-90WGI
+
+### Rider 232efb0e-0929-423d-b512-cba92e3dfec1
+GET {{Rider.API_HostAddress}}/  api/rides?pageIndex=1&pageSize=10
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMzJlZmIwZS0wOTI5LTQyM2QtYjUxMi1jYmE5MmUzZGZlYzEiLCJlbWFpbCI6InJpZGVyMUByaWRlcy5jb20iLCJyb2xlIjoicmlkZXIiLCJleHAiOjE3NjMyMzE5MDAsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6InJpZGUtYXBpIn0.jb1PQAkXrJVESrBDQG5xZ7sAqkOQq4NBaXqNYqNZO2M
+
+
+### Driver 690f1427-6abc-46b9-8d4e-05a6c2ab94ec
+GET {{Rider.API_HostAddress}}/api/rides?pageIndex=1&pageSize=10
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYzIzNDZjMi02ZDZmLTQ5ZDktYWQ1MC02OWU4YTYyMDEwNDMiLCJlbWFpbCI6ImRyaXZlcjFAcmlkZXMuY29tIiwicm9sZSI6ImRyaXZlciIsImV4cCI6MTc2MzE1ODkxNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAxIiwiYXVkIjoicmlkZS1hcGkifQ.WIEdak-GmGqqgiQmQe-kVU14-n7Yqk3o1Cff2PlVtaM
+
 
 ###
 POST {{Rider.API_HostAddress}}/api/rides/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMzJlZmIwZS0wOTI5LTQyM2QtYjUxMi1jYmE5MmUzZGZlYzEiLCJlbWFpbCI6InJpZGVyMUByaWRlcy5jb20iLCJyb2xlIjoicmlkZXIiLCJleHAiOjE3NjMyMzE5MDAsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6InJpZGUtYXBpIn0.jb1PQAkXrJVESrBDQG5xZ7sAqkOQq4NBaXqNYqNZO2M
 
 {
-  "RiderId": "73909b9c-c26b-4af0-b55b-721d4b50d658",
+  "RiderId": "232efb0e-0929-423d-b512-cba92e3dfec1",
   "Pickup": {
     "Latitude": "19.401840",
     "Longitude": "-99.142091"
   },
+
+
   "Dropoff": {
     "Latitude": "6.16511",
     "Longitude": "-75.574600"
@@ -25,10 +41,11 @@ Content-Type: application/json
 ###
 PUT {{Rider.API_HostAddress}}/api/rides/assign
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYzIzNDZjMi02ZDZmLTQ5ZDktYWQ1MC02OWU4YTYyMDEwNDMiLCJlbWFpbCI6ImRyaXZlcjFAcmlkZXMuY29tIiwicm9sZSI6ImRyaXZlciIsImV4cCI6MTc2MzE1ODkxNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAxIiwiYXVkIjoicmlkZS1hcGkifQ.WIEdak-GmGqqgiQmQe-kVU14-n7Yqk3o1Cff2PlVtaM
 
 {
-  "RideId": "85fd15e9-cdb4-4c49-a864-bc1ef2c49bd0",
-  "DriverId": "6baa9bec-873b-4037-be1d-87de3dd84fec"
+  "RideId": "edf5a421-cea3-4392-a019-85ac6cc9e763",
+  "DriverId": "bc2346c2-6d6f-49d9-ad50-69e8a6201043"
 }
 
 

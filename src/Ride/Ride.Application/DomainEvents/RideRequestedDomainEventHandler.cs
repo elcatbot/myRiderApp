@@ -6,7 +6,7 @@ public class RideRequestedDomainEventHandler(ILogger<RideRequestedDomainEventHan
     public Task Handle(RideRequestedDomainEvent notification, CancellationToken cancellationToken)
     {
         // A email can be sent
-        Logger.LogInformation($"Ride Requested: {notification.RideId} by Rider: {notification.RideId}");
+        Logger.LogInformation($"Ride Requested: {notification.RideId} by Rider: {notification.RiderId}");
         return Task.CompletedTask;
     }
 }

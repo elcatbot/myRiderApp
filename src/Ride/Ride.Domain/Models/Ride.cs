@@ -11,6 +11,7 @@ public class Ride
     public Location? DropOff { get; private set; }
     public DateTime RequestedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
+    public DateTime EndedAt { get; private set; }
 
     private List<INotification>? _domainEvents;
     public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly()!;
@@ -61,6 +62,7 @@ public class Ride
         }
         Status = RideStatus.Completed;
         UpdatedAt = DateTime.UtcNow;
+        EndedAt = DateTime.UtcNow;
         AddDomainEvent(new RideCompletedDomainEvent(Id, DateTime.UtcNow));
     }
 

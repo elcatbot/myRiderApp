@@ -1,5 +1,6 @@
 @Identity.API_HostAddress = http://localhost:5001
 
+### Rider
 POST {{Identity.API_HostAddress}}/api/auth/login
 Content-Type: application/json
 
@@ -10,7 +11,18 @@ Content-Type: application/json
 }
 
 
-###
+### Driver
+POST {{Identity.API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "Email": "driver1@rides.com",
+  "Password": "MyP455w0rd!",
+  "Role": "driver"
+}
+
+
+### Rider
 POST {{Identity.API_HostAddress}}/api/auth/register
 Content-Type: application/json
 
@@ -19,6 +31,18 @@ Content-Type: application/json
   "Name": "RiderOne",
   "Password": "MyP455w0rd!",
   "Role": "rider"
+}
+
+
+### Driver
+POST {{Identity.API_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "Email": "driver1@rides.com",
+  "Name": "DriverOne",
+  "Password": "MyP455w0rd!",
+  "Role": "driver"
 }
 
 

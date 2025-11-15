@@ -5,6 +5,9 @@ public static class ApplicationExtensions
     public static void AddApplicationServices(this IHostApplicationBuilder builder)
     {
         // builder.AddElasticsearchClient("elasticsearch");
+        builder.AddAuth();
+
+        builder.AddWebCors();
 
         builder.AddHostServices();
 
