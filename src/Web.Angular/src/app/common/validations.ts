@@ -1,7 +1,13 @@
 import { Validators } from "@angular/forms";
 
+export const FullNameValidation = [
+  Validators.required,
+  Validators.minLength(3),
+]
+
 export const EmailValidation = [
-  Validators.required, Validators.email
+  Validators.required, 
+  Validators.email
 ]
 
 export const PasswordValidation = [

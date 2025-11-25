@@ -54,7 +54,7 @@ public static class IdentityApi
             )
         , "Rider");
 
-        return TypedResults.Created($"Email confirmation link: {confirmationLink}");
+        return TypedResults.Created($"{confirmationLink}");
     }
 
     private static async Task<Results<Ok<TokenRequest>, UnauthorizedHttpResult>> LoginAsync(

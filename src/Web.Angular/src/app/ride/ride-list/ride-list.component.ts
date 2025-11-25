@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IRidePageIndex } from '../../common/models/IRidePageIndex';
+import { IRidePageIndex } from '../../common/models/ride/IRidePageIndex';
 import { catchError, tap } from 'rxjs';
 import { RideService } from '../ride.service';
-import { IRide } from '../../common/models/IRide';
+import { IRide } from '../../common/models/ride/IRide';
 
 @Component({
   selector: 'app-ride-list',

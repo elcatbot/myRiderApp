@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { RideRoutingModule } from './ride-routing.module';
 import { RideListComponent } from './ride-list/ride-list.component';
 import { RideDetailComponent } from './ride-detail/ride-detail.component';
-import { RideBookingComponent } from './ride-booking/ride-booking.component';
 import { RideTrackingComponent } from './ride-tracking/ride-tracking.component';
 import { RideService } from './ride.service';
 
@@ -13,7 +12,6 @@ import { RideService } from './ride.service';
   declarations: [
     RideListComponent,
     RideDetailComponent,
-    RideBookingComponent,
     RideTrackingComponent
   ],
   imports: [

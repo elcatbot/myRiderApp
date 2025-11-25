@@ -27,10 +27,10 @@ POST {{Identity.API_HostAddress}}/api/auth/register
 Content-Type: application/json
 
 {
-  "Email": "rider1@rides.com",
   "Name": "RiderOne",
-  "Password": "MyP455w0rd!",
-  "Role": "rider"
+  "Role": "rider",
+  "Email": "rider1@rides.com",
+  "Password": "MyP455w0rd!"
 }
 
 

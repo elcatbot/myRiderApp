@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../common/data.service';
 import { Observable, tap } from 'rxjs';
-import { IRidePageIndex } from '../common/models/IRidePageIndex';
+import { IRidePageIndex } from '../common/models/ride/IRidePageIndex';
 
 @Injectable({
   providedIn: 'root'
