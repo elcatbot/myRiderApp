@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SecurityService } from '../../common/security.service';
+import { AuthService } from '../../common/auth.service';
 import { EmailValidation, FullNameValidation, PasswordValidation } from '../../common/validations';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class RegisterComponent {
 
     constructor(
       private formBuilder: FormBuilder, 
-      private security: SecurityService,
+      private security: AuthService,
       private router: Router
     ) { }
     

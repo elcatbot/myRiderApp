@@ -1,26 +1,5 @@
-<nav class="top-menu" aria-label="Main navigation">
-  <ul class="top-menu__list">
-    <li class="top-menu__item">
-      <button class="top-menu__link">Trip</button>
-    </li>
-    <li class="top-menu__item">
-      <button class="top-menu__link" routerLink="/rides">Ride History</button>
-    </li>
-    <div class="top-menu_right">
-      <li class="top-menu__item right">
-        <button class="top-menu__link" routerLink="/login">Login</button>
-      </li>
-      <li class="top-menu__item right">
-        <button class="top-menu__link" routerLink="/register">Register</button>
-      </li>
-    </div>
-  </ul>
-</nav>
-
-<!-- Existing ride list content -->
-<section class="ride-list">
-  <!-- ... your ride list code from before ... -->
-</section>
-
+@if ((authService.authStatus$ | async); as auth) {
+  <app-navigation-menu [isAuthenticated]="auth.isAuthenticated"></app-navigation-menu>
+}
 
 <router-outlet />

@@ -10,7 +10,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'rides', loadChildren: () => import('./ride/ride.module').then(m => m.RideModule) },
+  { 
+    path: 'rides', 
+    loadChildren: () => import('./ride/ride.module').then(m => m.RideModule),
+    canLoad: []
+  },
 ];
 
 @NgModule({
