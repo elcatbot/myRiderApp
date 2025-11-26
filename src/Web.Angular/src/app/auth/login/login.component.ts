@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
     login(submitedForm: FormGroup) {
       this.security.login(
         // submitedForm.value.email, 
-        // submitedForm.value.password
-        "rider1@rides.com",
-        "MyP455w0rd!",
+        // submitedForm.value.password,
+          "rider1@rides.com",
+          "MyP455w0rd!",
       ).pipe(
         tap((res) => {
           console.log('Login successful');

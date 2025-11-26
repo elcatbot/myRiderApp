@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavigationMenuComponent } from './navigation-menu/navigation-menu.compo
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

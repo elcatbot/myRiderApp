@@ -85,18 +85,14 @@ public static class IdentityApi
         {
             Token = refreshToken,
             UserId = user.Id,
-            ExpiresAt = DateTime.UtcNow.AddDays(1)
+            ExpiresAt = DateTime.UtcNow.AddDays(1),
+            AppUser = user,
         });
 
         await identityContext.SaveChangesAsync();
 
         logger.LogInformation($"User LogIn successful. Token: {accessToken}");
-        var tokens = new Dictionary<string, string>
-        {
-            { "accessToken", accessToken },
-            { "refreshToken", refreshToken }
-        };
-        // return Results.Ok(new { accessToken, refreshToken }) // Add to response header
+        
         return TypedResults.Ok(new TokenRequest
         {
             AccessToken = accessToken,
@@ -161,8 +157,10 @@ public static class IdentityApi
             .Include(rt => rt.AppUser)
             .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
 
-        if (storedToken == null || storedToken.IsRevoked || storedToken.ExpiresAt < DateTime.UtcNow)
+        if (storedToken == null || storedToken.ExpiresAt < DateTime.UtcNow)
+        {
             return TypedResults.Unauthorized();
+        }
 
         var roles = await userManager.GetRolesAsync(storedToken.AppUser!);
         var newAccessToken = tokenService.GenerateAccessToken(storedToken.AppUser!, roles);
@@ -172,8 +170,9 @@ public static class IdentityApi
         context.RefreshTokens!.Add(new RefreshToken
         {
             Token = newRefreshToken,
-            UserId = storedToken.Token,
-            ExpiresAt = DateTime.UtcNow.AddDays(7)
+            UserId = storedToken.UserId,
+            ExpiresAt = DateTime.UtcNow.AddDays(1),
+            AppUser = storedToken.AppUser,
         });
 
         await context.SaveChangesAsync();
