@@ -6,6 +6,8 @@ public static class ApplicationExtensions
     {
         AddReverseProxy(builder);
         AddRequestRateLimit(builder);
+        
+        builder.AddWebCors();
         builder.AddAuth();
     }
     

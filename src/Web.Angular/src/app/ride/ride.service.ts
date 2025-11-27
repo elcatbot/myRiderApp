@@ -8,7 +8,7 @@ import { IRidePageIndex } from '../common/models/ride/IRidePageIndex';
 })
 export class RideService {
 
-  private baseUrl = 'http://localhost:5053/api/rides';
+  private baseUrl = 'http://localhost:5002/api/rides';
 
   constructor(private dataService: DataService) { }
 

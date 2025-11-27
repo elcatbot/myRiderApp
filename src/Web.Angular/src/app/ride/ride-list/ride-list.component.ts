@@ -26,12 +26,9 @@ export class RideListComponent implements OnInit {
         .pipe(
           tap((data: IRidePageIndex) => {
             console.log('Rides fetched successfully');
-            console.log('count:', data.count);
-            console.log('Pickup:', data.data[0]?.pickUp.latitude);
           }),
           catchError(err => {
-          console.error('Error fetching rides', err);
-          throw err;
+            throw err;
           })
         )
         .subscribe((data: IRidePageIndex) => {

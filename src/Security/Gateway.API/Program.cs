@@ -22,6 +22,8 @@ app.Use(async (context, next) =>
     await next();
 });
 
+app.UseCors("AllowWebAngular");
+
 // 3️⃣ Use rate limiter globally
 app.UseRateLimiter();
 
