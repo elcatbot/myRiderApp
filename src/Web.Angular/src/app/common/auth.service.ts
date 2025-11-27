@@ -24,6 +24,8 @@ export class AuthService implements IAuthService {
   constructor(private http: HttpClient,  private router: Router) {
     if(this.hasExpiredToken()){
       this.logout();
+    } else {
+      this.authStatus$.next(this.getAuthStatusFromToken())
     }
   }
 
@@ -32,7 +34,7 @@ export class AuthService implements IAuthService {
       .pipe(
         map((value: any) => {
           this.setTokens(value.accessToken, value.refreshToken);
-          const status = this.getAuthStatusFromToken(value.accessToken);
+          const status = this.getAuthStatusFromToken();
           this.authStatus$.next(status);
           return status.isAuthenticated;
         }),
@@ -60,7 +62,7 @@ export class AuthService implements IAuthService {
 
   logout() : void {
     setTimeout(() => {
-      this.refreshToken();
+      this.clearTokens();
       this.authStatus$.next(defaultAuthStatus);
     }, 0);
   }
@@ -100,8 +102,9 @@ export class AuthService implements IAuthService {
     return true;
   }
 
-  private getAuthStatusFromToken(token: string): IAuthStatus {
-    var decoded: any = jwtDecode(token);
+  private getAuthStatusFromToken(): IAuthStatus {
+    var decoded: any = jwtDecode(this.getToken('jwt'));
+    console.log(decoded)
     return {
       isAuthenticated: decoded.email ? true : false,
       userId: decoded.sub,

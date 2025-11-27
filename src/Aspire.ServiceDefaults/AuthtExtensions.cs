@@ -15,7 +15,9 @@ public static class AuthtExtensions
              {
                  ValidIssuer = builder.Configuration["JwtToken:Issuer"],
                  ValidAudience = builder.Configuration["JwtToken:Audience"],
-                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtToken:Key"]!))
+                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtToken:Key"]!)),
+                 ValidateLifetime = true,
+                 ClockSkew = TimeSpan.Zero
              };
              options.RequireHttpsMetadata = false;
              options.IncludeErrorDetails = true;
