@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'logout', component: LogoutComponent },
   { 
-    path: 'rides', 
+    path: 'ride', 
     loadChildren: () => import('./ride/ride.module').then(m => m.RideModule),
     canLoad: []
   }

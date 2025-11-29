@@ -1,0 +1,81 @@
+.ride-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0f14;
+  padding: 24px;
+}
+
+.ride-card {
+  background: #121821;
+  border: 1px solid #233044;
+  border-radius: 14px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.ride-title {
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #e9eef7;
+  text-align: center;
+}
+
+.ride-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-group {
+  display: grid;
+  gap: 6px;
+
+  label {
+    font-size: 14px;
+    color: #a9b3c3;
+  }
+
+  .form-control {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #233044;
+    background: #1a2230;
+    color: #e9eef7;
+    font-size: 14px;
+
+    &:focus {
+      border-color: #4c8dff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(76, 141, 255, 0.3);
+    }
+  }
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &--primary {
+    background: #4c8dff;
+    color: #0a0f18;
+
+    &:hover {
+      background: lighten(#4c8dff, 5%);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

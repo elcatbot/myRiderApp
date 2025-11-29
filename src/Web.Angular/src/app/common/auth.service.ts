@@ -104,7 +104,6 @@ export class AuthService implements IAuthService {
 
   private getAuthStatusFromToken(): IAuthStatus {
     var decoded: any = jwtDecode(this.getToken('jwt'));
-    console.log(decoded)
     return {
       isAuthenticated: decoded.email ? true : false,
       userId: decoded.sub,

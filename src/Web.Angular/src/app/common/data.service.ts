@@ -20,4 +20,13 @@ export class DataService {
         })
       );
   }
+
+  post(url: string, data: any, params?: any,) : Observable<any> {
+    return this.http.post(url, data, params)
+            .pipe(
+                catchError((error) => { throw error })
+            );
+  }
+
+
 }

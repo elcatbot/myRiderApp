@@ -1,0 +1,58 @@
+<div class="ride-page">
+  <div class="ride-card">
+    <h2 class="ride-title">Request a Ride</h2>
+
+    <form [formGroup]="rideForm" (ngSubmit)="onRequestRide()" class="ride-form">
+      <div class="form-group">
+        <label for="pickup">Pickup Location</label>
+        <input
+          id="pickup"
+          formControlName="pickup"
+          type="text"
+          class="form-control"
+          placeholder="Enter pickup address"
+        />
+        <ul *ngIf="pickupResults.length">
+          <li *ngFor="let r of pickupResults" (click)="selectResult(r, 'pickup')">
+              {{ r.display_name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label for="dropoff">Dropoff Location</label>
+        <input
+          id="dropoff"
+          formControlName="dropoff"
+          type="text"
+          class="form-control"
+          placeholder="Enter dropoff address"
+        />
+        <ul *ngIf="dropoffResults.length">
+          <li *ngFor="let r of dropoffResults" (click)="selectResult(r, 'dropoff')">
+              {{ r.display_name}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label for="rideType">Ride Type</label>
+        <select id="rideType" formControlName="rideType" class="form-control">
+          <option value="standard">Standard</option>
+          <option value="premium">Premium</option>
+          <option value="shared">Shared</option>
+        </select>
+      </div>
+
+      @if(rideError){
+        <div class="error-message">
+            {{ rideError }}
+        </div>
+      }
+
+      <button type="submit" class="btn btn-primary" [disabled]="rideForm.invalid">
+        Request Ride
+      </button>
+    </form>
+  </div>
+</div>

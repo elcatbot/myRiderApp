@@ -1,14 +1,3 @@
-<!-- <p>ride-list works!</p>
-
-<p>List of Rides:</p>
-<div *ngIf="rides.length > 0">
-  <ul>
-    <li *ngFor="let ride of rides">
-      {{ ride.id }} - {{ ride.pickUp.latitude }} to {{ ride.dropOff.longitude }} on {{ ride.requestedAt | date:'short' }}
-    </li>
-  </ul>
-</div> -->
-
 <!-- ride-list.component.html -->
 <section class="ride-list" aria-label="Passenger rides">
   <header class="ride-list__header">
@@ -48,7 +37,7 @@
     >
       <div class="ride-card__header">
         <div class="ride-card__id">
-          <span class="muted">ID</span>
+          <span class="muted">Rider</span>
           <span class="mono">{{ ride.id }}</span>
         </div>
           

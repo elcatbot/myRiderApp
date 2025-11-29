@@ -5,18 +5,22 @@ import { RideRoutingModule } from './ride-routing.module';
 import { RideListComponent } from './ride-list/ride-list.component';
 import { RideDetailComponent } from './ride-detail/ride-detail.component';
 import { RideTrackingComponent } from './ride-tracking/ride-tracking.component';
+import { RideRequestComponent } from './ride-request/ride-request.component';
 import { RideService } from './ride.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     RideListComponent,
     RideDetailComponent,
-    RideTrackingComponent
+    RideTrackingComponent,
+    RideRequestComponent
   ],
   imports: [
     CommonModule,
-    RideRoutingModule
+    RideRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     RideService
