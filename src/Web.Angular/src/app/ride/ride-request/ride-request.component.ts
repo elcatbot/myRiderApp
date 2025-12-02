@@ -16,9 +16,6 @@ export class RideRequestComponent implements OnInit {
   rideForm!: FormGroup;
   rideError!: string | undefined;
 
-  // searchPickup = new FormControl('');
-  // searchDropoff = new FormControl('');
-
   selectedPickup!: LocationResult;
   selectedDropoff!: LocationResult;
 
@@ -37,20 +34,19 @@ export class RideRequestComponent implements OnInit {
     this.rideForm = this.formBuilder.group({
       pickup: ['', Validators.required],
       dropoff: ['', Validators.required],
-      rideType: ['standard', Validators.required]
+      rideType: ['standard', Validators.required],
+      fare: ['0', Validators.required]
     });
 
     this.locationValueChanges();
   }
 
-  onRequestRide(): void {
-    if (this.rideForm.valid) {
-      this.rideService.requestRide(this.selectedPickup, this.selectedDropoff)
-       .subscribe({
-        next: () => this.router.navigate(['/ride']),
-        error: (err) => this.rideError = err
-      });
-    }
+  onRequestRide(submitedForm: FormGroup): void {
+    this.rideService.requestRide(this.selectedPickup, this.selectedDropoff, submitedForm.value.fare)
+      .subscribe({
+      next: () => this.router.navigate(['/ride']),
+      error: (err) => this.rideError = err
+    });
   }
 
   selectResult(location: LocationResult, val: string) {

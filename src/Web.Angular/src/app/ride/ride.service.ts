@@ -25,13 +25,13 @@ export class RideService {
       );
   }
 
-  requestRide(pickupRequest: LocationResult, dropoffRequest: LocationResult) : Observable<void>{
+  requestRide(pickupRequest: LocationResult, dropoffRequest: LocationResult, fare: number) : Observable<void>{
     let riderId;
     this.authService.authStatus$.pipe(tap((status) => { riderId = status.userId })).subscribe();
     let pickup : ILocation = { latitude: pickupRequest.lat, longitude: pickupRequest.lon };
     let dropoff : ILocation = { latitude: dropoffRequest.lat, longitude: dropoffRequest.lon };
     
-    return this.dataService.post(this.baseUrl, {riderId, pickup, dropoff })
+    return this.dataService.post(this.baseUrl, {riderId, pickup, dropoff, fare })
       .pipe(
         tap((res) => {
           return res;

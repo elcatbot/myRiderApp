@@ -35,18 +35,6 @@ export class LocationService {
     );
   }
 
-   // .pipe(
-    //      map((products: LocationResult[]) =>            // <-- no return here, this is RxJS `map` operator 
-    //       products.map((product: LocationResult) => {  // <-- Javascript `Array#map` function
-    //         return { 
-    //           place_id: product.place_id, 
-    //           lat: product.lat,
-    //           lon: product.lon,
-    //           display_name: product.display_name,
-    //         } as LocationResult;                        // <-- assert type using Typescript `as`
-    //       })
-    //     ) 
-
   reverseGeocode(lat: number, lon: number): Observable<any> {
     const params = new HttpParams()
       .set('lat', lat.toString())

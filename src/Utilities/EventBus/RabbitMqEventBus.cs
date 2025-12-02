@@ -34,10 +34,6 @@ public sealed class RabbitMqEventBus(IConnection RabbitMqConnection, ILogger<Rab
         var queueName = $"{typeof(TEvent).Name}_queue";
         var exchangeName = $"{domain}_event_bus";
 
-        Logger.LogInformation($"Routing Key => {routingKey}");
-        Logger.LogInformation($"queueName => {queueName}");
-        Logger.LogInformation($"exchangeName => {exchangeName}");
-
         var channel = RabbitMqConnection.CreateModel();
 
         // Declare exchange and queue

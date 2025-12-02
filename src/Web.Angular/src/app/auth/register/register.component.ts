@@ -38,9 +38,15 @@ export class RegisterComponent {
         // submitedForm.value.fullName, 
         // submitedForm.value.password
         // submitedForm.value.role, 
-        "riderOne",
-        "rider",
-        "rider1@rides.com",
+ 
+        // "riderOne",
+        // "rider",
+        // "rider1@rides.com",
+        // "MyP455w0rd!",
+
+        "DriverOne",
+        "driver",
+        "driver1@rides.com",
         "MyP455w0rd!",
       )
         .subscribe({

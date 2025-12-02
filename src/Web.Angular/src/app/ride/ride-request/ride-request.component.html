@@ -2,7 +2,7 @@
   <div class="ride-card">
     <h2 class="ride-title">Request a Ride</h2>
 
-    <form [formGroup]="rideForm" (ngSubmit)="onRequestRide()" class="ride-form">
+    <form [formGroup]="rideForm" (ngSubmit)="onRequestRide(rideForm)" class="ride-form">
       <div class="form-group">
         <label for="pickup">Pickup Location</label>
         <input
@@ -42,6 +42,17 @@
           <option value="premium">Premium</option>
           <option value="shared">Shared</option>
         </select>
+      </div>
+
+      <div class="form-group">
+        <label for="fare">Fare</label>
+        <input
+          id="fare"
+          formControlName="fare"
+          type="text"
+          class="form-control"
+          placeholder="Suggested Fare"
+        />
       </div>
 
       @if(rideError){
