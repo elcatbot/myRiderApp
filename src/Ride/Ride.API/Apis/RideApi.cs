@@ -56,15 +56,14 @@ public static class RideApi
             : TypedResults.NotFound();
     }
 
-    private static async Task<Results<Created, ProblemHttpResult>> RequestRideAsync(
+    private static async Task<Results<Created<RideDto>, ProblemHttpResult>> RequestRideAsync(
         HttpContext context,
         [AsParameters] RideParamServices services,
         [FromBody] RequestRideCommand command
     )
     {
         var commandResult = await services.Mediator.Send(command);
-        context.Response.Headers["X-ride-id"] = $"{commandResult}";
-        return TypedResults.Created();
+        return TypedResults.Created($"/api/rides/{commandResult.Id}", commandResult);
     }
 
     private static async Task<Results<NoContent, NotFound>> AssignDriverAsync(

@@ -8,6 +8,9 @@ import { RideTrackingComponent } from './ride-tracking/ride-tracking.component';
 import { RideRequestComponent } from './ride-request/ride-request.component';
 import { RideService } from './ride.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SpinnerComponent } from '../common/components/spinner/spinner.component';
+import { AppModule } from '../app.module';
+import { AppCommonModule } from '../common/app-common.module';
 
 
 @NgModule({
@@ -21,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RideRoutingModule,
     ReactiveFormsModule,
+    AppCommonModule
   ],
   providers: [
     RideService

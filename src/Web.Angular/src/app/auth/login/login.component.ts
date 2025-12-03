@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmailValidation, PasswordValidation } from '../../common/validations';
-import { AuthService } from '../../common/auth.service';
+import { AuthService } from '../../common/services/auth.service';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs';
 
@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
         // submitedForm.value.email, 
         // submitedForm.value.password,
 
-        // "rider1@rides.com",
-        // "MyP455w0rd!",
-
-        "driver1@rides.com",
+        "rider1@rides.com",
         "MyP455w0rd!",
+
+        // "driver1@rides.com",
+        // "MyP455w0rd!",
       ).pipe(
         tap((res) => {
           console.log('Login successful');

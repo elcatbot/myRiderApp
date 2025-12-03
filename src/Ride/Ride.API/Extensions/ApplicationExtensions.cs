@@ -6,8 +6,11 @@ public static class ApplicationExtensions
     {
         // builder.AddElasticsearchClient("elasticsearch");
         builder.AddAuth();
-
+        builder.AddWebCors();
+        
         builder.AddHostServices();
+
+        builder.Services.AddSignalR();
 
         builder.Services.AddSingleton<IPublishSubscribeEvents, PublishSubscribeEvents>();
 

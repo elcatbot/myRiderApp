@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
-import { ILoginResponse } from './models/ride/ILoginResponse';
-import { IAuthService } from './models/auth/IAuthService';
-import { IAuthStatus } from './models/auth/IAuthStatus';
+import { ILoginResponse } from '../models/ride/ILoginResponse';
+import { IAuthService } from '../models/auth/IAuthService';
+import { IAuthStatus } from '../models/auth/IAuthStatus';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 

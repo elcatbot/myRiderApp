@@ -1,9 +1,9 @@
 namespace myRideApp.Rides.Application.Commands;
 
 public class RequestRideCommandHandler(IRideRepository Repository, IEventBus EventBus)
-    : IRequestHandler<RequestRideCommand, Guid>
+    : IRequestHandler<RequestRideCommand, RideDto>
 {
-    public async Task<Guid> Handle(RequestRideCommand request, CancellationToken cancellationToken)
+    public async Task<RideDto> Handle(RequestRideCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -13,7 +13,7 @@ public class RequestRideCommandHandler(IRideRepository Repository, IEventBus Eve
                 request.Dropoff,
                 request.Fare
             );
-            
+
             Repository.Add(ride);
             await Repository.SaveChangesAsync();
 
@@ -26,7 +26,17 @@ public class RequestRideCommandHandler(IRideRepository Repository, IEventBus Eve
                 Fare = ride.Fare!.Amount,
                 RequestedAt = ride.RequestedAt
             }, nameof(Ride));
-            return ride.Id;
+
+            return new RideDto
+            {
+                Id = ride.Id,
+                RiderId = ride.RiderId,
+                PickUp = ride.PickUp,
+                DropOff = ride.DropOff,
+                Status = ride.Status.ToString(),
+                Fare = ride.Fare,
+                RequestedAt = ride.RequestedAt
+            };
         }
         catch (Exception ex)
         {

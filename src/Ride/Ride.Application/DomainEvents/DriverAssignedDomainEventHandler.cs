@@ -1,7 +1,8 @@
 namespace myRideApp.Rides.Application.DomainEvents;
 
 public class DriverAssignedDomainEventHandler(
-    IPublishSubscribeEvents PublishEvents
+    IPublishSubscribeEvents PublishEvents,
+    IHubContext<MainHub> HubContext
 )
     : INotificationHandler<DriverAssignedDomainEvent>
 {
@@ -15,5 +16,13 @@ public class DriverAssignedDomainEventHandler(
                 notification.AssignedAt
             )
         , "Driver");
+
+        await HubContext.Clients.Group(notification.RideId.ToString())
+            .SendAsync("DriverAssignedRide", new
+            {
+                DriverId = notification.DriverId,
+                RideId = notification.RideId,
+                AcceptedAt = notification.AssignedAt
+            });
     }
 }

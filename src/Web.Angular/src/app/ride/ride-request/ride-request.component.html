@@ -64,6 +64,12 @@
       <button type="submit" class="btn btn-primary" [disabled]="rideForm.invalid">
         Request Ride
       </button>
+
+      <app-spinner *ngIf="isWaitingForDriver" message="SLooking for Drivers..." (cancel)="cancelRide()"></app-spinner>
+
+      <div *ngIf="driverAssigned">
+        Driver {{ driverAssigned.driverId }} accepted your ride!
+      </div>
     </form>
   </div>
 </div>

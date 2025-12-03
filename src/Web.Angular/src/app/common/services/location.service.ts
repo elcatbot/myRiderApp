@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../environments/environments';
+import { environment } from '../../../environments/environments';
 
 export interface LocationResult {
   place_id: number;

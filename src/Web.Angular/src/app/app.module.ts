@@ -12,6 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { SpinnerComponent } from './common/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
     RegisterComponent,
     HomeComponent,
     NavigationMenuComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
     ReactiveFormsModule,
     RouterModule
   ],
+  exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

@@ -16,8 +16,8 @@ POST {{Driver.API_HostAddress}}/api/driver
 Content-Type: application/json
 
 {
-  "Name": "Driver 1",
-  "Email": "Email1@email.com",
+  "Name": "DriverOne",
+  "Email": "driver1@rides.com",
   "PhoneNumber": "+77776545555",
   "Make": "Make 1",
   "Model": "Model 1",
@@ -31,7 +31,7 @@ PUT {{Driver.API_HostAddress}}/api/driver/go-online
 Content-Type: application/json
 
 {
-  "DriverId": "6baa9bec-873b-4037-be1d-87de3dd84fec",
+  "DriverId": "7353e367-b5d6-426d-a7f6-f9c38637ee95",
   "Latitude": "19.401840",
   "Longitude": "-99.142091"
 }
@@ -56,8 +56,8 @@ PUT {{Driver.API_HostAddress}}/api/driver/ride/accept
 Content-Type: application/json
 
 {
-  "DriverId": "6baa9bec-873b-4037-be1d-87de3dd84fec",
-  "RideId": "815e75d5-d03d-43a5-9099-7e0af4a19bd6"
+  "DriverId": "7353e367-b5d6-426d-a7f6-f9c38637ee95",
+  "RideId": "16366035-4c6c-4956-acd5-ca9a089b9f45"
 }
 
 ###

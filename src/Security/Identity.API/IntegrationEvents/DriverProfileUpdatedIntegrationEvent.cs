@@ -1,0 +1,10 @@
+namespace myRideApp.Identity.IntegrationEvents;
+
+public record DriverProfileUpdatedIntegrationEvent 
+(
+    Guid DriverId,
+    string Name,
+    string Email,
+    string Locale, // "en-US"
+    DateTime UpdatedAt
+);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../common/auth.service';
+import { AuthService } from '../../common/services/auth.service';
 import { EmailValidation, FullNameValidation, PasswordValidation } from '../../common/validations';
 import { Router } from '@angular/router';
 
@@ -39,15 +39,15 @@ export class RegisterComponent {
         // submitedForm.value.password
         // submitedForm.value.role, 
  
-        // "riderOne",
-        // "rider",
-        // "rider1@rides.com",
-        // "MyP455w0rd!",
-
-        "DriverOne",
-        "driver",
-        "driver1@rides.com",
+        "riderOne",
+        "rider",
+        "rider1@rides.com",
         "MyP455w0rd!",
+
+        // "DriverOne",
+        // "driver",
+        // "driver1@rides.com",
+        // "MyP455w0rd!",
       )
         .subscribe({
           next: (res) => {

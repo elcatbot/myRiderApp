@@ -15,3 +15,5 @@ global using myRideApp.Extensions.Hosting;
 global using myRideApp.Utilities.EventBus.Extensions;
 global using myRideApp.Rides.Api.Services;
 global using myRideApp.Utilities.Resiliency;
+global using myRideApp.Rides.Application.IntegrationEvents;
+global using myRideApp.Utilities.SignalR;

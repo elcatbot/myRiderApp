@@ -6,4 +6,5 @@ global using RabbitMQ.Client;
 global using Microsoft.Extensions.DependencyInjection;
 global using RabbitMQ.Client.Events;
 global using StackExchange.Redis;
+global using Microsoft.AspNetCore.SignalR;
 global using Polly;

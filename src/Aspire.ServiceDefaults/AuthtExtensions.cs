@@ -47,6 +47,7 @@ public static class AuthtExtensions
             {
                 policy.WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
+                    .AllowCredentials()
                     .AllowAnyHeader();
             });            
         });

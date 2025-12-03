@@ -5,4 +5,4 @@ public record RequestRideCommand(
     Location Pickup,
     Location Dropoff,
     decimal Fare
-) : IRequest<Guid>;
+) : IRequest<RideDto>;

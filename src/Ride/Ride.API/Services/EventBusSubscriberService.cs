@@ -1,5 +1,3 @@
-using myRideApp.Rides.Application.IntegrationEvents;
-
 namespace myRideApp.Rides.Api.Services;
 
 public class EventBusSubscriberService(IPublishSubscribeEvents SubscribeEvents) : BackgroundService

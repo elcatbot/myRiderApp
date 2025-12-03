@@ -8,3 +8,5 @@ global using Microsoft.Extensions.Logging;
 global using myRideApp.Utilities.EventBus;
 global using myRideApp.Rides.Domain.Models;
 global using myRideApp.Rides.Application.Commands;
+global using Microsoft.AspNetCore.SignalR;
+global using myRideApp.Utilities.SignalR;

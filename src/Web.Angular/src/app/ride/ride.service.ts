@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../common/data.service';
+import { DataService } from '../common/services/data.service';
 import { Observable, tap } from 'rxjs';
 import { IRidePageIndex } from '../common/models/ride/IRidePageIndex';
-import { LocationResult } from '../common/location.service';
-import { AuthService } from '../common/auth.service';
+import { LocationResult } from '../common/services/location.service';
+import { AuthService } from '../common/services/auth.service';
 import { ILocation } from '../common/models/ride/ILocation';
+import { IRide } from '../common/models/ride/IRide';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class RideService {
       );
   }
 
-  requestRide(pickupRequest: LocationResult, dropoffRequest: LocationResult, fare: number) : Observable<void>{
+  requestRide(pickupRequest: LocationResult, dropoffRequest: LocationResult, fare: number) : Observable<IRide>{
     let riderId;
     this.authService.authStatus$.pipe(tap((status) => { riderId = status.userId })).subscribe();
     let pickup : ILocation = { latitude: pickupRequest.lat, longitude: pickupRequest.lon };
