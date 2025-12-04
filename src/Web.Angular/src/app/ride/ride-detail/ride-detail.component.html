@@ -1,1 +1,31 @@
-<p>ride-detail works!</p>
+<section class="ride-list">
+
+<div class="ride-detail-container">
+    <div *ngIf="isLoading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading ride details...</p>
+    </div>
+  <div *ngIf="!isLoading && ride">
+    <h2>Ride Details</h2>
+
+    <div class="ride-info">
+        <p><strong>Status:</strong> {{ ride?.status }}</p>
+        <p><strong>Pickup:</strong> {{ ride?.pickUp?.latitude }}, {{ ride?.pickUp?.longitude }}</p>
+        <p><strong>Dropoff:</strong> {{ ride?.dropOff?.latitude }}, {{ ride?.dropOff?.longitude }}</p>
+        <p><strong>Fare:</strong> {{ ride?.fare?.amount }}</p>
+        <p><strong>Requested At:</strong> {{ ride?.requestedAt | date:'short' }}</p>
+    </div>
+
+    <div *ngIf="ride?.driverId" class="driver-card">
+        <h3>Driver Information</h3>
+        <p><strong>Name:</strong> {{ ride?.driverId }}</p>
+        <p><strong>Car:</strong> </p>
+    </div>
+
+    <div class="actions" *ngIf="buttons">
+        <button class="cancel-btn" (click)="cancelRide()" [disabled]="ride?.status?.toLowerCase() === 'cancelled'">Cancel Ride</button>
+        <button class="track-btn" (click)="trackRide()">Track Ride</button>
+    </div>
+  </div>
+</div>
+</section>

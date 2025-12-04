@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
 
+  private baseUrl: string = environment.rideApiBaseUrl;
   private hubConnection!: signalR.HubConnection;
 
   constructor() { }
 
-    public startConnection(url: string, rideId: string) {
+    public startConnection(api: string, rideId: string) {
+      let route;
+      if(api === 'ride') {
+        route = 'hub/ride'
+      }
+      else {
+        route = 'hub/driver'
+      }
       this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(url)
+      .withUrl(`${this.baseUrl}/${route}`)
       .withAutomaticReconnect()
       .build();
 
@@ -27,5 +36,9 @@ export class SignalRService {
 
     onDriverAssigned(callback: (driver: any) => void) {
       this.hubConnection.on('DriverAssignedRide', callback);
+    } 
+
+    onRideStatusChanged(callback: (ride: any) => void) {
+      this.hubConnection.on('RideStatusChanged', callback);
     } 
 }

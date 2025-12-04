@@ -49,10 +49,12 @@ export class RideRequestComponent implements OnInit {
     this.isWaitingForDriver = true;
     this.rideService.requestRide(this.selectedPickup, this.selectedDropoff, submitedForm.value.fare)
       .subscribe(res => {
-        this.hubService.startConnection("http://localhost:5053/hub/ride", res.id);
+        console.log("rideid: " + res.id);
+        this.hubService.startConnection("ride", res.id);
         this.hubService.onDriverAssigned(driver => {
           this.driverAssigned = driver;
           this.isWaitingForDriver = false; // stop loading
+          this.router.navigate(['/ride/', res.id]);
         });
       });
   }

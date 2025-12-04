@@ -68,9 +68,9 @@ public class Ride
 
     public void CancelRide()
     {
-        if ( Status != RideStatus.InProgress)
+        if (Status == RideStatus.Completed || Status == RideStatus.Cancelled)
         {
-            throw new RideDomainException("Ride cannot be cancelled, neither it's not acepted nor in progress.");
+            throw new RideDomainException("Ride cannot be cancelled, neither it's not accepted nor in progress.");
         }
         Status = RideStatus.Cancelled;
         UpdatedAt = DateTime.UtcNow;

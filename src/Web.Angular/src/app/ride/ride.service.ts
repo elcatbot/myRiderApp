@@ -26,6 +26,16 @@ export class RideService {
       );
   }
 
+  getRideById(rideId: string) : Observable<IRide> {
+    let url = `${this.baseUrl}/${rideId}`;
+    return this.dataService.get(url)
+      .pipe(
+        tap((res: IRide) => {
+          return res;
+        })
+      );
+  }
+
   requestRide(pickupRequest: LocationResult, dropoffRequest: LocationResult, fare: number) : Observable<IRide>{
     let riderId;
     this.authService.authStatus$.pipe(tap((status) => { riderId = status.userId })).subscribe();
@@ -38,5 +48,10 @@ export class RideService {
           return res;
         })
       );
+  }
+
+  cancelRide(rideId: string) : Observable<void> {
+    let url = `${this.baseUrl}/cancel`;
+    return this.dataService.put(url, { rideId });
   }
 }

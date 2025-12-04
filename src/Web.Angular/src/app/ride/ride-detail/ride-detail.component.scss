@@ -1,0 +1,130 @@
+$border: #233044;
+$radius: 10px;
+$surface-2: #1a2230;
+$shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+$surface: #121821;
+$bg: #0b0f14;
+
+.ride-list {
+  background: linear-gradient(180deg, $bg 0%, darken($bg, 4%) 100%);
+  border: 1px solid $border;
+  border-radius: $radius;
+  padding: 24px;
+  display: flex;              // 👈 enable flexbox
+  justify-content: center;    // 👈 horizontal center
+  align-items: center;        // 👈 vertical center (optional if you want middle of screen)
+  min-height: 100px;
+}
+
+.ride-detail-container {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 16px 16px 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  max-width: 600px;           // 👈 fixed max width instead of 50%
+  width: 100%;   
+  &:hover {
+    transform: translateY(-2px);
+    border-color: lighten($border, 6%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  }
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+strong {
+  color: #fff;
+}
+
+.ride-info p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #a9b3c3;
+}
+
+.driver-card {
+  margin-top: 20px;
+  padding: 15px;
+  background: #121821;
+  border: 1px solid #3498db;
+  border-radius: 8px;
+}
+
+.driver-card h3 {
+  margin-bottom: 10px;
+  color: #2980b9;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.cancel-btn, .track-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.cancel-btn {
+  background-color: #d66e63;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: #a75047;
+}
+
+.track-btn {
+  background-color: #4c8dff;
+  color: #fff;
+}
+
+.track-btn:hover {
+  background-color: #314239;
+}
+
+/*Spinner*/
+
+.loading-overlay {
+  position: fixed;
+  top: 50px; left: 0;
+  width: 100%; height: 100%;
+  background-color: 0b0f14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+  font-size: 1.2rem;
+  color: #2c3e50;
+}

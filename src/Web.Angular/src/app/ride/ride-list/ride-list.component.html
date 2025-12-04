@@ -66,7 +66,7 @@
             <div class="route__info">
               <span class="label">Drop-off</span>
               <span class="value">
-                {{ (ride.dropOff?.latitude + ', ' + ride.dropOff.longitude) }}
+                {{ (ride.dropOff.latitude + ', ' + ride.dropOff.longitude) }}
               </span>
             </div>
           </div>
@@ -85,7 +85,7 @@
             <span class="value">{{ ride.fare.amount }}</span>
           </div>
 
-          <div class="meta__item">
+          <!-- <div class="meta__item">
             <span class="label">Rider</span>
             <span class="value mono">{{ ride.riderId }}</span>
           </div>
@@ -93,27 +93,14 @@
           <div class="meta__item" *ngIf="ride.driverId">
             <span class="label">Driver</span>
             <span class="value mono">{{ ride.driverId }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
 
       <footer class="ride-card__footer">
         <!-- Example actions; enable/disable per status -->
-        <button
-          type="button"
-          class="btn btn--primary"
-          aria-label="View ride details"
-        >
+        <button type="button" class="btn btn--primary" [routerLink]="['/ride', ride.id]" aria-label="View ride details">
           View details
-        </button>
-
-        <button
-          type="button"
-          class="btn btn--ghost"
-          [disabled]="ride.status !== 'Requested'"
-          aria-label="Cancel ride"
-        >
-          Cancel
         </button>
       </footer>
     </article>
