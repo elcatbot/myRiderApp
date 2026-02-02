@@ -65,7 +65,7 @@
         Request Ride
       </button>
 
-      <app-spinner *ngIf="isWaitingForDriver" message="SLooking for Drivers..." (cancel)="cancelRide()"></app-spinner>
+      <app-spinner *ngIf="isWaitingForDriver" message="Looking for Drivers..." (cancel)="cancelRide()"></app-spinner>
 
       <div *ngIf="driverAssigned">
         Driver {{ driverAssigned.driverId }} accepted your ride!

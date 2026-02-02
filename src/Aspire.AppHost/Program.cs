@@ -8,13 +8,17 @@ var builder = DistributedApplication.CreateBuilder(args);
 //     .WithEnvironment("ELASTICSEARCH_HOSTS", elastic.GetEndpoint("http"))
 //     .WithEndpoint(containerPort: 5601, isProxied: true);
 
-var rideService = builder.AddProject<Projects.Ride_Api>("ride-api")
+var rideService = builder.AddProject<Projects.Ride_API>("ride-api")
     .WithEnvironment("RUNNING_IN_ASPIRE", "true")
     // .WaitFor(rabbitmq)
     // .WithReference(rabbitmq);
     ;
 
-var apiGateway = builder.AddProject<Projects.Gateway_Api>("gateway-api");
+var driverService = builder.AddProject<Projects.Driver_API>("driver-api")
+    .WithEnvironment("RUNNING_IN_ASPIRE", "true")
+    ;
+var apiGateway = builder.AddProject<Projects.Gateway_API>("gateway-api");
+var identity = builder.AddProject<Projects.Identity_API>("identity-api");
 
 
 builder.Build().Run();
