@@ -123,11 +123,15 @@ public class RideTest
     }
 
     [Fact]
-    public void CancelRide_ReturnsDomainException_WhenStatusIsNotInProgress()
+    public void CancelRide_ReturnsDomainException_WhenStatusIsCompleted()
     {
         // Arrage
         var riderId = Guid.NewGuid();
+        var driverId = Guid.NewGuid();
         var ride = new Ride(riderId, new Location(1, 1), new Location(2, 2), 4000);
+        ride.AssignDriver(driverId);
+        ride.InitRide();
+        ride.CompleteRide();
 
         // Act & Assert
         Assert.Throws<RideDomainException>(() => ride.CancelRide());

@@ -1,6 +1,6 @@
 namespace myRideApp.Rides.Application.Commands;
 
-public class AssignDriverCommandHandler(IRideRepository Repository, IEventBus EventBus)
+public class AssignDriverCommandHandler(IRideRepository Repository)
     : IRequestHandler<AssignDriverCommand, bool>
 {
     public async Task<bool> Handle(AssignDriverCommand request, CancellationToken cancellationToken)

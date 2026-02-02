@@ -18,7 +18,7 @@ public class AssignDriverCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         var command = new AssignDriverCommand(ride.Id, driverId);
-        var handler = new AssignDriverCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var handler = new AssignDriverCommandHandler(repositoryMock.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -31,14 +31,6 @@ public class AssignDriverCommandHandlerTest
         repositoryMock.Verify(r => r.Update(ride), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
 
-        // An integration event with correct payload should be published
-        eventBusMock.Verify(eb => eb.PublishAsync(
-            It.Is<DriverAssignedIntegrationEvent>(ev =>
-                ev.RideId == ride.Id &&
-                ev.DriverId == driverId &&
-                ev.RiderId == riderId &&
-                ev.AssignedAt == ride.RequestedAt
-            ), "Ride"), Times.Once);
     }
 
     [Fact]
@@ -57,12 +49,11 @@ public class AssignDriverCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         var command = new AssignDriverCommand(ride.Id, driverId);
-        var handler = new AssignDriverCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var handler = new AssignDriverCommandHandler(repositoryMock.Object);
         
         // Act & Assert
         await Assert.ThrowsAsync<Exception>(() => handler.Handle(command, CancellationToken.None));
         repositoryMock.Verify(r => r.Update(It.IsAny<Ride>()), Times.Once);
         repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Never);
     }
 }

@@ -25,7 +25,7 @@ public class GetRideByIdQueryHandlerTest
 
         // Assert
         Assert.Equal(sut.Id, ride.Id);
-        Assert.Equal(sut.Status, RideStatus.Requested);
+        Assert.Equal(sut.Status, RideStatus.Requested.ToString());
         _repository.Verify(r => r.GetByIdAsync(It.IsAny<Guid>()), Times.Once);
     }
 

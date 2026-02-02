@@ -46,7 +46,10 @@ public class Driver : IAggregateRoot
             throw new DriverDomainException("Driver is already Online");
         }
         Status = DriverStatus.Online;
-        CurrentLocation = location;
+        if(location.Latitude > 0 && location.Longitude > 0)
+        {
+            CurrentLocation = location;
+        }
         _domainEvents!.Add(new DriverWentOnlineDomainEvent(Id, location));
     }
 

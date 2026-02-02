@@ -1,6 +1,6 @@
 namespace myRideApp.Rides.Application.Commands;
 
-public class CancelRideCommandHandler(IRideRepository Repository, IEventBus EventBus)
+public class CancelRideCommandHandler(IRideRepository Repository)
     : IRequestHandler<CancelRideCommand, bool>
 {
     public async Task<bool> Handle(CancelRideCommand request, CancellationToken cancellationToken)
@@ -15,11 +15,6 @@ public class CancelRideCommandHandler(IRideRepository Repository, IEventBus Even
         Repository.Update(ride);
         await Repository.SaveChangesAsync();
 
-        return await EventBus.PublishAsync(new RideCancelledIntegrationEvent
-        {
-            RideId = ride.Id,
-            RiderId = ride.RiderId,
-            RequestedAt = ride.RequestedAt
-        }, nameof(Ride));
+        return true;
     }
 }

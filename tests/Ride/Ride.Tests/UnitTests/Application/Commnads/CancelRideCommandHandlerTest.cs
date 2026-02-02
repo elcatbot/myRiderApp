@@ -24,7 +24,7 @@ public class CancelRideCommandHandlerTest
             .ReturnsAsync(true);
 
         var command = new CancelRideCommand(ride.Id);
-        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object);
 
         // Act
         var sut = await handler.Handle(command, CancellationToken.None);
@@ -52,7 +52,7 @@ public class CancelRideCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         var command = new CancelRideCommand(ride.Id);
-        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object);
 
         // Act 
         var sut = await handler.Handle(command, CancellationToken.None);
@@ -78,7 +78,7 @@ public class CancelRideCommandHandlerTest
         var eventBusMock = new Mock<IEventBus>();
 
         var command = new CancelRideCommand(ride.Id);
-        var handler = new CancelRideCommandHandler(repositoryMock.Object, eventBusMock.Object);
+        var handler = new CancelRideCommandHandler(repositoryMock.Object);
 
         // Act & Assert
         var sut = handler.Handle(command, CancellationToken.None);

@@ -10,3 +10,4 @@ global using Microsoft.Extensions.Logging;
 global using myRideApp.Drivers.Domain.Events;
 global using myRideApp.Notification.Application.IntegrationEvents;
 global using myRideApp.Drivers.Application.IntegrationEvents;
+global using myRideApp.Drivers.Application.Commands;

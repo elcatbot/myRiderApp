@@ -5,7 +5,7 @@ namespace myRideApp.Tests.Rides.Application.Commands;
 public class RequestRideCommandHandlerTest
 {
     [Fact]
-    public async Task Handle_AddRide_SavesAndPublishesEvent_ReturnsNonEmptyGuid()
+    public async Task Handle_AddRide_SavesAndPublishesEvent_ReturnsNonNullRideDto()
     {
         // Arrange
         var repoMock = new Mock<IRideRepository>();
@@ -29,7 +29,7 @@ public class RequestRideCommandHandlerTest
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        Assert.NotEqual(Guid.Empty, result);
+        Assert.NotNull(result);
         repoMock.Verify(r => r.Add(It.IsAny<Ride>()), Times.Once);
         repoMock.Verify(r => r.SaveChangesAsync(), Times.Once);
         eventBusMock.Verify(e => e.PublishAsync(It.IsAny<RideRequestedIntegrationEvent>(), "Ride"), Times.Once);

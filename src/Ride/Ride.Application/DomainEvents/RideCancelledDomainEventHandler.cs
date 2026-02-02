@@ -1,12 +1,17 @@
 namespace myRideApp.Rides.Application.DomainEvents;
 
-public class RideCancelledDomainEventHandler(ILogger<RideCancelledDomainEventHandler> Logger) 
+public class RideCancelledDomainEventHandler(
+    IPublishSubscribeEvents PublishEvents
+) 
     : INotificationHandler<RideCancelledDomainEvent>
 {
-    public Task Handle(RideCancelledDomainEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(RideCancelledDomainEvent notification, CancellationToken cancellationToken)
     {
-        // A email can be sent
-        Logger.LogInformation($"Ride: {notification.RideId} was cancelled");
-        return Task.CompletedTask;
+        await PublishEvents.PublishAsync(new RideCancelledIntegrationEvent
+        {
+            RideId = notification.RideId,
+            DriverId = notification.DriverId,
+            RequestedAt = notification.CompletedAt
+        }, nameof(Ride));
     }
 }
